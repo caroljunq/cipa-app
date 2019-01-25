@@ -14,22 +14,22 @@
      <ion-grid class="grid">
         <ion-row>
            <ion-col>
-                <ion-button class="btnHomePage" color="primary" expand="block"> Definição </ion-button>
+                <ion-button class="btnHomePage" (click)='Def()' color="primary" expand="block"> Definição </ion-button>
            </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-              <ion-button class="btnHomePage" color="secondary" expand="block"> Como Usar o App </ion-button>
+              <ion-button class="btnHomePage" (click)='ComoUsar()' color="secondary" expand="block"> Como Usar o App </ion-button>
           </ion-col>
         </ion-row>        
         <ion-row>
             <ion-col>
-                 <ion-button class="btnHomePage" color="tertiary" expand="block"> Iniciar o Uso </ion-button>
+                 <ion-button class="btnHomePage" (click)='Usar()' color="tertiary" expand="block"> Iniciar o Uso </ion-button>
             </ion-col>
          </ion-row>
          <ion-row>
             <ion-col>
-                 <ion-button class="btnHomePage" color="success" expand="block"> Referências </ion-button>
+                 <ion-button class="btnHomePage" (click)='Ref()' color="success" expand="block"> Referências </ion-button>
             </ion-col>
          </ion-row>
      </ion-grid>

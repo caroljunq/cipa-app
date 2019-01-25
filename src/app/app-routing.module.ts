@@ -19,7 +19,10 @@ const routes: Routes = [
   { path: 'locais', loadChildren: './locais/locais.module#LocaisPageModule' },
   { path: 'apoio', loadChildren: './apoio/apoio.module#ApoioPageModule' },
   { path: 'casos', loadChildren: './casos/casos.module#CasosPageModule' },
-  { path: 'como-usar', loadChildren: './como-usar/como-usar.module#ComoUsarPageModule' }
+  { path: 'como-usar', loadChildren: './como-usar/como-usar.module#ComoUsarPageModule' },
+  { path: 'definicao', loadChildren: './definicao/definicao.module#DefinicaoPageModule' },
+  { path: 'iniciar', loadChildren: './iniciar/iniciar.module#IniciarPageModule' },
+  { path: 'ref', loadChildren: './ref/ref.module#RefPageModule' }
 ];
 
 @NgModule({
