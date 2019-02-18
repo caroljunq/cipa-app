@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,21 +7,22 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private router: Router){}
+  constructor(private navCtrl: NavController) {}
 
-  Def(){
-    this.router.navigate(['/definicao']);
+  Def() {
+    this.navCtrl.navigateForward('definicao');
   }
 
-  ComoUsar(){
-    this.router.navigate(['/como-usar']);
+  ComoUsar() {
+    this.navCtrl.navigateForward('como-usar');
   }
 
-  Usar(){
-    this.router.navigate(['/iniciar']);
+  Usar() {
+    this.navCtrl.navigateForward('iniciar');
   }
 
-  Ref(){
-    this.router.navigate(['/ref']);
+  Ref() {
+    this.navCtrl.navigateForward('ref');
   }
+// tslint:disable-next-line: eofline
 }
