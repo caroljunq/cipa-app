@@ -11,15 +11,15 @@ export class HomePage {
   constructor(private router: Router){}
 
   Def(){
-    this.router.navigate(['/definicao']);
+    this.router.navigate(['/definition']);
   }
 
-  ComoUsar(){
-    this.router.navigate(['/como-usar']);
+  HowToUse(){
+    this.router.navigate(['/how-to-use']);
   }
 
   Usar(){
-    this.router.navigate(['/iniciar']);
+    this.router.navigate(['/about']);
   }
 
   Ref(){

@@ -11,17 +11,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
-  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
-  { path: 'locais', loadChildren: './locais/locais.module#LocaisPageModule' },
-  { path: 'apoio', loadChildren: './apoio/apoio.module#ApoioPageModule' },
-  { path: 'casos', loadChildren: './casos/casos.module#CasosPageModule' },
-  { path: 'como-usar', loadChildren: './como-usar/como-usar.module#ComoUsarPageModule' },
-  { path: 'definicao', loadChildren: './definicao/definicao.module#DefinicaoPageModule' },
-  { path: 'iniciar', loadChildren: './iniciar/iniciar.module#IniciarPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'support-locations', loadChildren: './support-locations/support-locations.module#SupportLocationsPageModule' },
+  { path: 'support', loadChildren: './support/support.module#SupportPageModule' },
+  { path: 'cases', loadChildren: './cases/cases.module#CasesPageModule' },
+  { path: 'how-to-use', loadChildren: './how-to-use/how-to-use.module#HowToUsePageModule' },
+  { path: 'definition', loadChildren: './definition/definition.module#DefinitionPageModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
   { path: 'ref', loadChildren: './ref/ref.module#RefPageModule' }
 ];
 
