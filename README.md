@@ -8,3 +8,4 @@ Descrição aqui.
 # Projetos exemplo - Ionic 4
 * https://github.com/ionicthemes/ionic4-starter-app/tree/master/src/app
 * https://github.com/ionic-team/ionic-conference-app
+* https://github.com/codedamn/social-media-app-ionic4/
