@@ -1,12 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title> Como Usar </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-
-</ion-content>
+<ion-content>
+    <ion-grid class="useGrid">
+      <ion-row>
+         <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="title"> Como usar </p>
+        </ion-col>        
+      </ion-row>
+      <ion-row class="useBlock">
+        <ion-col>
+            <p> Este aplicativo foi desenvolvido com o intuito de facilitar o raciocínio clínico do 
+              enfermeiro diante de alguma suspeita e/ou confirmação de violência contra a criança, 
+              no sentido de identificar os diagnósticos, ações e resultados com mais precisão em relação ao 
+              fenômeno social,  sistematizando um conhecimento produzido -  Subconjunto Terminológico da 
+              Classificação Internacional para a Prática de Enfermagem − CIPE® − para o Enfrentamento da 
+              Violência Doméstica Contra a Criança - que auxiliará no cotidiano da(o)s enfermeira(o)s. </p>
+            <p> Este aplicativo foi desenvolvido com o intuito de facilitar o raciocínio clínico do 
+              enfermeiro diante de alguma suspeita e/ou confirmação de violência contra a criança, no 
+              sentido de identificar os diagnósticos, ações e resultados com mais precisão em relação 
+              ao fenômeno social,  sistematizando um conhecimento produzido -  Subconjunto Terminológico 
+              da Classificação Internacional para a Prática de Enfermagem − CIPE® − para o Enfrentamento
+               da Violência Doméstica Contra a Criança - que auxiliará no cotidiano da(o)s enfermeira(o)s.</p>
+        </ion-col>
+          
+      </ion-row>
+      <ion-row class="lineLogo">
+        <ion-img src="../../assets/imgs/logo500x.png" class="bottomLogo"></ion-img>  
+      </ion-row>      
+    </ion-grid>
+  </ion-content>
+  
