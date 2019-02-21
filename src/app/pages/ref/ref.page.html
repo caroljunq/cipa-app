@@ -1,12 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-    <ion-title>Referências</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-
-</ion-content>
+<ion-content>
+    <ion-grid class="refGrid">
+      <ion-row>
+         <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="title"> Referências </p>
+        </ion-col>        
+      </ion-row>
+      <ion-row class="refBlock">
+        <ion-col>
+            <p> Estatuto da Criança e do Adolescente </p>
+            <p> OMS, definição de violência </p>
+        </ion-col>
+          
+      </ion-row>
+      <ion-row class="lineLogo">
+        <ion-img src="../../assets/imgs/logo500x.png" class="bottomLogo"></ion-img>  
+      </ion-row>      
+    </ion-grid>
+  </ion-content>
+  

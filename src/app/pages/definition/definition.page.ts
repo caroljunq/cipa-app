@@ -11,5 +11,4 @@ export class DefinitionPage implements OnInit {
 
   ngOnInit() {
   }
-
 }
