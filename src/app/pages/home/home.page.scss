@@ -15,3 +15,8 @@
 .btnHomePage{
    height: 80px;
 }
+
+ion-button{
+  --background: var(--primary-color);
+  // font-weight: 600;
+}

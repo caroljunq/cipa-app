@@ -9,16 +9,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './pages/home/home.module#HomePageModule'
   },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'support-locations', loadChildren: './support-locations/support-locations.module#SupportLocationsPageModule' },
-  { path: 'support', loadChildren: './support/support.module#SupportPageModule' },
-  { path: 'cases', loadChildren: './cases/cases.module#CasesPageModule' },
-  { path: 'how-to-use', loadChildren: './how-to-use/how-to-use.module#HowToUsePageModule' },
-  { path: 'definition', loadChildren: './definition/definition.module#DefinitionPageModule' },
-  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
-  { path: 'ref', loadChildren: './ref/ref.module#RefPageModule' }
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+  { path: 'support-locations', loadChildren: './pages/support-locations/support-locations.module#SupportLocationsPageModule' },
+  { path: 'support', loadChildren: './pages/support/support.module#SupportPageModule' },
+  { path: 'cases', loadChildren: './pages/cases/cases.module#CasesPageModule' },
+  { path: 'how-to-use', loadChildren: './pages/how-to-use/how-to-use.module#HowToUsePageModule' },
+  { path: 'definition', loadChildren: './pages/definition/definition.module#DefinitionPageModule' },
+  { path: 'about', loadChildren: './pages/about/about.module#AboutPageModule' },
+  { path: 'ref', loadChildren: './pages/ref/ref.module#RefPageModule' },
+  { path: 'interventions', loadChildren: './pages/interventions/interventions.module#InterventionsPageModule' },
+  { path: 'diagnostics', loadChildren: './pages/diagnostics/diagnostics.module#DiagnosticsPageModule' }
 ];
 
 @NgModule({

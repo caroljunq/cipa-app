@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,19 +9,19 @@ import { Router } from '@angular/router';
 export class HomePage {
   constructor(private router: Router){}
 
-  Def(){
+  goToDefinition(){
     this.router.navigate(['/definition']);
   }
 
-  HowToUse(){
-    this.router.navigate(['/how-to-use']);
+  goToInterventions(){
+    this.router.navigate(['/interventions']);
   }
 
-  Usar(){
-    this.router.navigate(['/about']);
+  goToDiagnostics(){
+    this.router.navigate(['/diagnostics']);
   }
 
-  Ref(){
+  goToRefs(){
     this.router.navigate(['/ref']);
   }
 }
