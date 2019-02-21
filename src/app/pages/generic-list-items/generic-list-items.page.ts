@@ -9,12 +9,26 @@ import { ContentService } from '../../services/content/content.service';
 })
 export class GenericListItemsPage implements OnInit {
 
+  pagesInfo: any  = {
+    interventions: {
+      options: ['Fortalecimento','Desgastes']
+    },
+    diagnostics: {
+      options: ['Criança', "Família"]
+    }
+  }
+
+  renderContent: any = {
+    category: '',
+    group: '',
+    data: []
+  };
+
   constructor(
-    private contentService: ContentService
+    private contentService: ContentService,
   ) { }
 
   ngOnInit() {
-    console.log(this.contentService.getRenderContent());
+    this.renderContent = this.contentService.getRenderContent();
   }
-
 }

@@ -6,6 +6,14 @@
     <ion-title>Teste</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
 
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+  <ion-grid>
+    <ion-row *ngFor="let item of renderContent.data | search : terms">
+      <ion-card>
+        {{ item.text }}
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>

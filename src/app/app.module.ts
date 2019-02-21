@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 // Services
-import { ContentService } from './services/content/content.service'
+import { ContentService } from './services/content/content.service';
 
 @NgModule({
   declarations: [AppComponent],

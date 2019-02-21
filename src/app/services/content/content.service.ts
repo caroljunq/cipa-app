@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { diagnostics_list } from '../diagnostics-data';
 import { interventions_list } from '../interventions-data';
 
-
 @Injectable({
   providedIn: 'root'
 })

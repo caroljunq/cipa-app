@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
+import { ContentService } from '../../services/content/content.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,18 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private menuCtrl: MenuController) {}
+  constructor(
+    private menuCtrl: MenuController,
+    private navCtrl: NavController,
+    private contentService: ContentService
+  ) {}
 
   openMenu(){
      this.menuCtrl.open();
+  }
+
+  listInterventions(){
+    this.contentService.setRenderContent('interventions', '');
+    this.navCtrl.navigateForward('/generic-list-items');
   }
 }
