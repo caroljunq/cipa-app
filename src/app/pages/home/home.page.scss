@@ -20,6 +20,7 @@
 
 .btnHomePage{
    height: 80px;
+   font-size: 1.08rem;
 }
 
 ion-button{
@@ -41,4 +42,8 @@ ion-button{
 
 .menu-button{
   margin-left: 20px;
+
+  &:active{
+    transform: scale(1.2);
+  }
 }

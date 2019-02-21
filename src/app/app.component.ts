@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   public appPages = [
-    {
-      title: 'Início',
-      url: '/home',
-      icon: 'home'
-    },
     {
       title: 'Perfil',
       url: '/profile',
@@ -26,7 +22,7 @@ export class AppComponent {
       icon: 'navigate'
     },
     {
-      title: 'Atendimentos/Cases',
+      title: 'Casos',
       url: '/cases',
       icon: 'medical'
     },
@@ -34,13 +30,19 @@ export class AppComponent {
       title: 'Criação e Apoio',
       url: '/support',
       icon: 'thumbs-up'
+    },
+    {
+      title: 'Sair',
+      url: '/home',
+      icon: 'exit'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
   }
