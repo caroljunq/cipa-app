@@ -47,3 +47,18 @@ ion-menu-toggle > ion-item{
   }
 
 }
+
+ion-button{
+  --background: var(--primary-color);
+  width: 90%;
+}
+
+ion-toolbar{
+  --background: var(--primary-color);
+  --color: white;
+  text-align: center;
+}
+
+ion-back-button{
+  --color: white;
+}

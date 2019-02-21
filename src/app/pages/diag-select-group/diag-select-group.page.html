@@ -3,10 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Teste 2</ion-title>
+    <ion-title>Grupos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-grid class="selection-menu">
+    <ion-row justify-content-center>
+      <ion-button class="btn-option" (click)="listDiagnostics('fortalecimento')" expand="full">Fortalecimento</ion-button>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-button class="btn-option" (click)="listDiagnostics('desgastes')" expand="full">Desgastes</ion-button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

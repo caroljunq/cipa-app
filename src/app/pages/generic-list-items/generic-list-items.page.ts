@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../services/content/content.service';
+
 
 @Component({
   selector: 'app-generic-list-items',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenericListItemsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private contentService: ContentService
+  ) { }
 
   ngOnInit() {
+    console.log(this.contentService.getRenderContent());
   }
 
 }

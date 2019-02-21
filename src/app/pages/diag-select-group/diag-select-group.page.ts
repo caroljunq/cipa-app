@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { ContentService } from '../../services/content/content.service';
 
 @Component({
   selector: 'app-diag-select-group',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiagSelectGroupPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+    private contentService: ContentService
+  ) { }
 
   ngOnInit() {
+  }
+
+  listDiagnostics(group){
+    this.contentService.setRenderContent('diagnostics', group);
+    this.navCtrl.navigateForward('/generic-list-items');
   }
 
 }

@@ -8,6 +8,11 @@ import { interventions_list } from '../interventions-data';
 })
 
 export class ContentService {
+  renderContent: any = {
+    category: '',
+    group: '',
+    data: []
+  };
 
   constructor() {}
 
@@ -16,15 +21,31 @@ export class ContentService {
     return diagnostics_list;
   }
 
-  getSpecificDiagnostics(type, group){
+  getSpecificDiagnostics(group){
     return diagnostics_list.filter( el => {
-      return el.type == type && el.type == group;
+      return el.group == group;
     })
   }
 
   // interventions functions
-  getIntervations(){
+  getInterventions(){
     return interventions_list;
   }
 
+  setRenderContent(category, group){
+    this.renderContent = {
+      category: category,
+      group: group
+    }
+
+    if(group != ''){
+      this.renderContent.data = this.getSpecificDiagnostics(group)
+    } else{
+      this.renderContent.data = this.getInterventions();
+    }
+  }
+
+  getRenderContent(){
+    return this.renderContent;
+  }
 }
