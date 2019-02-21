@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'definition', loadChildren: './pages/definition/definition.module#DefinitionPageModule' },
   { path: 'about', loadChildren: './pages/about/about.module#AboutPageModule' },
   { path: 'ref', loadChildren: './pages/ref/ref.module#RefPageModule' },
-  { path: 'interventions', loadChildren: './pages/interventions/interventions.module#InterventionsPageModule' },
-  { path: 'diagnostics', loadChildren: './pages/diagnostics/diagnostics.module#DiagnosticsPageModule' }
+  { path: 'generic-list-items', loadChildren: './pages/generic-list-items/generic-list-items.module#GenericListItemsPageModule' },
+  { path: 'diag-select-group', loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule' }
 ];
 
 @NgModule({

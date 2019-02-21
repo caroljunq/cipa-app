@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiagnosticsPage } from './diagnostics.page';
+import { DiagSelectGroupPage } from './diag-select-group.page';
 
-describe('DiagnosticsPage', () => {
-  let component: DiagnosticsPage;
-  let fixture: ComponentFixture<DiagnosticsPage>;
+describe('DiagSelectGroupPage', () => {
+  let component: DiagSelectGroupPage;
+  let fixture: ComponentFixture<DiagSelectGroupPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DiagnosticsPage ],
+      declarations: [ DiagSelectGroupPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiagnosticsPage);
+    fixture = TestBed.createComponent(DiagSelectGroupPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

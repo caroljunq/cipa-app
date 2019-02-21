@@ -15,11 +15,11 @@ export class HomePage {
   }
 
   goToInterventions(){
-      this.navCtrl.navigateForward('/interventions');
+      // this.navCtrl.navigateForward('/interventions');
   }
 
   goToDiagnostics(){
-      this.navCtrl.navigateForward('/diagnostics');
+      // this.navCtrl.navigateForward('/diagnostics');
   }
 
   goToRefs(){
