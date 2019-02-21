@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
+import { NavController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private menuCtrl: MenuController) {}
 
   goToDefinition(){
-    this.router.navigate(['/definition']);
+      this.navCtrl.navigateForward('/definition');
   }
 
   goToInterventions(){
-    this.router.navigate(['/interventions']);
+      this.navCtrl.navigateForward('/interventions');
   }
 
   goToDiagnostics(){
-    this.router.navigate(['/diagnostics']);
+      this.navCtrl.navigateForward('/diagnostics');
   }
 
   goToRefs(){
-    this.router.navigate(['/ref']);
+      this.navCtrl.navigateForward('/ref');
+  }
+
+  openMenu(){
+     this.menuCtrl.open();
   }
 }

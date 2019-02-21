@@ -8,8 +8,14 @@
    height: 70px;
 }
 
-.grid{
+.home-grid{
    margin-top: 10px;
+
+   ion-row{
+     display: flex;
+     justify-content: center;
+     margin: 7px;
+   }
 }
 
 .btnHomePage{
@@ -19,4 +25,20 @@
 ion-button{
   --background: var(--primary-color);
   // font-weight: 600;
+  width: 90%;
+}
+
+.header-home{
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fake-icon{
+  align-self: center;
+  width: 2rem;
+}
+
+.menu-button{
+  margin-left: 20px;
 }

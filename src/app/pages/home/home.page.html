@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -6,30 +6,26 @@
     <ion-title>
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <ion-img class="img-header" src="../../assets/imgs/cipalogo.PNG"></ion-img>
-  <ion-grid class="grid">
+  <ion-row class="header-home">
+    <ion-img class="fake-icon menu-button" src="../../assets/imgs/menu.png" (click)="openMenu()"></ion-img>
+    <ion-img class="img-header" src="../../assets/imgs/cipalogo.PNG"></ion-img>
+    <ion-img class="fake-icon" src="../../assets/imgs/blank.png"></ion-img>
+  </ion-row>
+  <ion-grid class="home-grid">
     <ion-row>
-      <ion-col>
-        <ion-button class="btnHomePage" (click)='goToDefinition()' expand="full"> Definição </ion-button>
-      </ion-col>
+      <ion-button class="btnHomePage" (click)='goToDefinition()' expand="full"> Definição </ion-button>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-button class="btnHomePage" (click)='goToInterventions()' expand="full">Intervenções</ion-button>
-      </ion-col>
+      <ion-button class="btnHomePage" (click)='goToInterventions()' expand="full">Intervenções</ion-button>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-button class="btnHomePage" (click)='goToDiagnostics()' expand="full">Diagnósticos</ion-button>
-      </ion-col>
+      <ion-button class="btnHomePage" (click)='goToDiagnostics()' expand="full">Diagnósticos</ion-button>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-button class="btnHomePage" (click)='goToRefs()' expand="full">Referências</ion-button>
-      </ion-col>
+      <ion-button class="btnHomePage" (click)='goToRefs()' expand="full">Referências</ion-button>
     </ion-row>
   </ion-grid>
 </ion-content>
