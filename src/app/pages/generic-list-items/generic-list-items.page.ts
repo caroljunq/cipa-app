@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../services/content/content.service';
 
-
 @Component({
   selector: 'app-generic-list-items',
   templateUrl: './generic-list-items.page.html',
@@ -31,4 +30,5 @@ export class GenericListItemsPage implements OnInit {
   ngOnInit() {
     this.renderContent = this.contentService.getRenderContent();
   }
+
 }

@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Services
 import { ContentService } from './services/content/content.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +21,9 @@ import { ContentService } from './services/content/content.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatExpansionModule
   ],
   providers: [
     StatusBar,

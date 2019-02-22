@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { GenericListItemsPage } from './generic-list-items.page';
 import { PipesModule } from '../../pipes/pipes.module'
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 const routes: Routes = [
@@ -22,8 +23,10 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    PipesModule
+    PipesModule,
+    MatExpansionModule
   ],
-  declarations: [GenericListItemsPage]
+  declarations: [GenericListItemsPage],
+  entryComponents: [],
 })
 export class GenericListItemsPageModule {}

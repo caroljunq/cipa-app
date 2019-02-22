@@ -1,19 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Teste</ion-title>
-  </ion-toolbar>
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Teste</ion-title>
+   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
-  <ion-grid>
-    <ion-row *ngFor="let item of renderContent.data | search : terms">
-      <ion-card>
-        {{ item.text }}
-      </ion-card>
-    </ion-row>
-  </ion-grid>
+   <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+   <ion-grid>
+     <ion-row *ngFor="let item of renderContent.data | search : terms">
+        <mat-expansion-panel>
+           <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
+              <mat-panel-title>
+                 <div style="" class="truncate">
+                   {{ item.text }}
+                 </div>
+              </mat-panel-title>
+           </mat-expansion-panel-header>
+           {{ item.text }}
+        </mat-expansion-panel>
+     </ion-row>
+   </ion-grid>
 </ion-content>

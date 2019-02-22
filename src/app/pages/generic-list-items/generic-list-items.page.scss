@@ -1,0 +1,32 @@
+// ion-card{
+//   width: 100%;
+//   min-height: 90px;
+//   padding: 20px;
+// }
+
+mat-expansion-panel{
+  width: 100%;
+  margin-top: 20px;
+}
+
+ion-row{
+  display: flex;
+  justify-content: center;
+}
+
+mat-panel-description {
+  display: block !important;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mat-expansion-panel-header-title {
+  min-width: 0;
+}
+.mat-expanded mat-panel-title {
+  display: none;
+}
