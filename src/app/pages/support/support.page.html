@@ -1,12 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-    <ion-title> Criação e Apoio </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content padding>
-
-</ion-content>
+<ion-content>
+    <ion-grid class="supGrid">
+      <ion-row>
+         <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="title"> Criação e Apoio </p>
+        </ion-col>        
+      </ion-row>
+      <ion-row class="supBlock">
+        <ion-col>
+          <p class="titles"> Coordenação do projeto </p> 
+          <p> Emiko Yashikawa Egry - Departamento de Enfermagem de Saúde Coletiva </p>
+          <p class="titles"> Equipe de pesquisadores </p> 
+          <p> Mylene Gomes da Silva, Karen Namie Sakata So</p>
+          <p class="titles"> Desenvolvimento </p> 
+          <p>LTIA (Laboratório de Tecnologia de Informação Aplicada) UNESP Bauru</p>
+          <p class="titles"> Apoio </p> 
+          <p> Escola de Enfermagem da Universidade de São Paulo </p>
+        </ion-col>
+          
+      </ion-row>
+      <ion-row class="lineLogo">
+        <ion-img src="../../assets/imgs/logo500x.png" class="bottomLogo"></ion-img>  
+      </ion-row>      
+    </ion-grid>
+  </ion-content>
+  

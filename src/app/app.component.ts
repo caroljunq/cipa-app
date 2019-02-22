@@ -32,6 +32,21 @@ export class AppComponent {
       icon: 'thumbs-up'
     },
     {
+      title: 'Como Usar',
+      url: '/how-to-use',
+      icon: 'help'
+    },
+    {
+      title: 'Criar Conta',
+      url: '/create-account',
+      icon: 'add'
+    },
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'log-in'
+    },
+    {
       title: 'Sair',
       url: '/home',
       icon: 'exit'

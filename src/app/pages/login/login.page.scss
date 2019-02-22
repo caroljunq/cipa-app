@@ -1,0 +1,54 @@
+.backIcon{
+    margin: 10px;
+    font-size: 30px;
+    color: #13ACA7;
+}
+
+.Welcome{
+    margin-top: 30px;
+    color: #fff;
+    font-size: 40px;
+}
+
+.loginEmail{
+    margin-top: 150px;
+}
+
+.loginIcons{
+    font-size: 25px; 
+    bottom: 2px;
+    margin: 10px; 
+    color: white; 
+}
+
+.email, .password{
+    display: flex;
+    border-bottom: 1px solid white;
+}
+
+.buttonLine, .createAccount{
+    margin-top: 20px;
+    display: flex; 
+    justify-content: center;
+}
+
+.loginButton{
+    align-self: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    --background: #8BCBFC;
+    --box-shadow: 5px 6px 20px #00000f;
+}
+
+.createAccountLink{
+    text-transform: uppercase;
+    color: #cdeacf; 
+}
+
+ion-input{
+    color: white; 
+}
+
+ion-content{
+    --background: #fff url('../../../assets/imgs/loginBackground.png') no-repeat center center / cover;
+}
