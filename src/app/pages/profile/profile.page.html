@@ -1,14 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding>
-
-    conteúdo
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+          <ion-img src="../../assets/imgs/profile.png" class="profilePic"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+           <h3> Nome Usuario </h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col text-center class="profileJob">
+            <p> Pesquisadora </p>
+          </ion-col>
+        </ion-row>
+      <ion-row>
+        <ion-col text-center class="profileEmail">
+          <p> cipaapp@example.com </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 </ion-content>

@@ -20,7 +20,7 @@
       </ion-select>
     </ion-item>
   </ion-list>
-   <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+   <ion-searchbar [(ngModel)]="terms" placeholder="Procurar"></ion-searchbar>
    <ion-grid>
      <ion-row *ngFor="let item of renderContent.data | search : terms">
         <mat-expansion-panel *ngIf="selected_option == item.type">

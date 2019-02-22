@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'about', loadChildren: './pages/about/about.module#AboutPageModule' },
   { path: 'ref', loadChildren: './pages/ref/ref.module#RefPageModule' },
   { path: 'generic-list-items', loadChildren: './pages/generic-list-items/generic-list-items.module#GenericListItemsPageModule' },
-  { path: 'diag-select-group', loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule' },  { path: 'create-account', loadChildren: './pages/create-account/create-account.module#CreateAccountPageModule' },
+  { path: 'diag-select-group', loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule' },
+  { path: 'create-account', loadChildren: './pages/create-account/create-account.module#CreateAccountPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
 
 ];

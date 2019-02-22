@@ -37,20 +37,10 @@ export class AppComponent {
       icon: 'help'
     },
     {
-      title: 'Criar Conta',
-      url: '/create-account',
-      icon: 'add'
-    },
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'log-in'
-    },
-    {
       title: 'Sair',
-      url: '/home',
+      url: '/login',
       icon: 'exit'
-    }
+    },
   ];
 
   constructor(
