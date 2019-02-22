@@ -8,6 +8,14 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ select_label }}</ion-label>
+      <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="selected_option">
+        <ion-select-option *ngFor="let value of this.select_values; let i = index" value="{{ value }}">{{ select_options[i] }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
    <ion-grid>
      <ion-row *ngFor="let item of renderContent.data | search : terms">

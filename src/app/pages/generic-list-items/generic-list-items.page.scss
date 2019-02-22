@@ -9,7 +9,7 @@ mat-expansion-panel{
   margin-top: 20px;
 }
 
-ion-row{
+ion-row {
   display: flex;
   justify-content: center;
 }
@@ -24,9 +24,15 @@ mat-panel-description {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .mat-expansion-panel-header-title {
   min-width: 0;
 }
+
 .mat-expanded mat-panel-title {
   display: none;
 }
+
+// .searchbar-input{
+//
+// }

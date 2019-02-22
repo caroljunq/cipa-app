@@ -8,14 +8,19 @@ import { ContentService } from '../../services/content/content.service';
 })
 export class GenericListItemsPage implements OnInit {
 
-  pagesInfo: any  = {
+  pageInfo: any  = {
     interventions: {
-      options: ['Fortalecimento','Desgastes']
+      select_label: 'Grupo',
+      select_options: ['Fortalecimento','Desgastes'],
+      select_values: ['fortalecimento','desgastes']
     },
     diagnostics: {
-      options: ['Criança', "Família"]
+      select_label: 'Relativos à',
+      select_options: ['Criança', 'Família'],
+      select_values: ['child','family']
     }
   }
+
 
   renderContent: any = {
     category: '',
@@ -23,12 +28,24 @@ export class GenericListItemsPage implements OnInit {
     data: []
   };
 
+  // render vars
+  select_label: string;
+  select_options: any = [];
+  select_values: any = [];
+  selected_option: any = [];
+
+
   constructor(
     private contentService: ContentService,
   ) { }
 
   ngOnInit() {
     this.renderContent = this.contentService.getRenderContent();
-  }
+    this.select_label = this.pageInfo[this.renderContent.category].select_label;
+
+    this.select_options = this.pageInfo[this.renderContent.category].select_options;
+    this.select_values = this.pageInfo[this.renderContent.category].select_values;
+    this.selected_option = this.select_values[0];
+}
 
 }
