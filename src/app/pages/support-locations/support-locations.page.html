@@ -1,23 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title> Locais de Apoio </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-
-    <ion-list>
-       <ion-item>
-          <ion-card>
-              <ion-card-header> nome do local </ion-card-header>
-              <ion-card-content> Conteúdo do card + imagem </ion-card-content>
-          </ion-card>
-       </ion-item>
-    </ion-list>
-
-    <div> Plugin do maps </div>
-
-</ion-content>
+<ion-content>
+    <ion-grid class="refGrid">
+      <ion-row>
+         <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="title"> Locais de Apoio </p>
+        </ion-col>        
+      </ion-row>
+      <ion-row class="refBlock">
+        <ion-col>
+        </ion-col>          
+      </ion-row>
+      <ion-row class="lineLogo">
+        <ion-img src="../../assets/imgs/logo500x.png" class="bottomLogo"></ion-img>  
+      </ion-row>      
+    </ion-grid>
+  </ion-content>
+  

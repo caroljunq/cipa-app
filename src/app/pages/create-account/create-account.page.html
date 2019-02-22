@@ -1,0 +1,28 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+    </ion-row>
+    <ion-row class="title">
+        <p> Criar uma conta </p>
+    </ion-row>
+    <ion-row>
+      <ion-input placeholder="Nome Completo" [(ngModel)]="name" class="Input"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input placeholder="Email" [(ngModel)]="email" class="Input"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input placeholder="Senha" [(ngModel)]="password" class="Input" type="password"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input placeholder="Confirmar senha" [(ngModel)]="confirmedPassword" class="Input" type="password"></ion-input>
+    </ion-row>
+    <ion-row class="button">
+        <ion-button expand="full" class="continueButton" (click)='CreateAccount();' > Continuar </ion-button>
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>
