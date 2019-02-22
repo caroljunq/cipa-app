@@ -10,17 +10,18 @@ export class GenericListItemsPage implements OnInit {
 
   pageInfo: any  = {
     interventions: {
+      title: 'Intervenções',
       select_label: 'Grupo',
       select_options: ['Fortalecimento','Desgastes'],
       select_values: ['fortalecimento','desgastes']
     },
     diagnostics: {
+      title: 'Diagnóstico e Resultados',
       select_label: 'Relativos à',
       select_options: ['Criança', 'Família'],
       select_values: ['child','family']
     }
   }
-
 
   renderContent: any = {
     category: '',
@@ -33,7 +34,8 @@ export class GenericListItemsPage implements OnInit {
   select_options: any = [];
   select_values: any = [];
   selected_option: any = [];
-
+  subtitle: any = '';
+  title: any = '';
 
   constructor(
     private contentService: ContentService,
@@ -46,6 +48,14 @@ export class GenericListItemsPage implements OnInit {
     this.select_options = this.pageInfo[this.renderContent.category].select_options;
     this.select_values = this.pageInfo[this.renderContent.category].select_values;
     this.selected_option = this.select_values[0];
-}
+
+    if(this.renderContent.group == 'fortalecimento'){
+      this.subtitle = 'Fortalecimento e Proteção';
+    }else if(this.renderContent.group == 'desgastes'){
+      this.subtitle = 'Desgastes';
+    }
+
+    this.title = this.pageInfo[this.renderContent.category].title;
+  }
 
 }

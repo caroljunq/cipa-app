@@ -57,8 +57,26 @@ ion-toolbar{
   --background: var(--primary-color);
   --color: white;
   text-align: center;
+
+  & > ion-title{
+    font-size: 1rem;
+    font-weight: 600;
+  }
 }
 
 ion-back-button{
   --color: white;
+}
+
+.extra-header{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > ion-label{
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
 }
