@@ -19,7 +19,7 @@ export class GenericListItemsPage implements OnInit {
       title: 'Diagnóstico e Resultados',
       select_label: 'Relativos à',
       select_options: ['Criança', 'Família'],
-      select_values: ['child','family']
+      select_values: ['crianca','familia']
     }
   }
 

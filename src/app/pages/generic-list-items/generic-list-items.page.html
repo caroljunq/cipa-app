@@ -23,7 +23,7 @@
    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
    <ion-grid>
      <ion-row *ngFor="let item of renderContent.data | search : terms">
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngIf="selected_option == item.type">
            <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
               <mat-panel-title>
                  <div style="" class="truncate">

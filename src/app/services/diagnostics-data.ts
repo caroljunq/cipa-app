@@ -3,11 +3,11 @@ const diagnostics = [
     id: 1,
     type: 'crianca',
     group: 'desgastes',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor'
+    text: 'TTLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor'
   },
   {
     id: 2,
-    type: 'crianca',
+    type: 'familia',
     group: 'desgastes',
     text: 'Blabla2'
   },
@@ -19,7 +19,7 @@ const diagnostics = [
   },
   {
     id: 4,
-    type: 'familia',
+    type: 'crianca',
     group: 'fortalecimento',
     text: 'Blabla4'
   },
