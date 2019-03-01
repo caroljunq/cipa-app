@@ -3,6 +3,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavController } from '@ionic/angular';
+import { AuthenticationService } from './services/firebase/authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +12,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  authentication = true;
   public appPages = [
     {
       title: 'Perfil',
@@ -35,19 +38,16 @@ export class AppComponent {
       title: 'Como Usar',
       url: '/how-to-use',
       icon: 'help'
-    },
-    {
-      title: 'Sair',
-      url: '/login',
-      icon: 'exit'
-    },
+    }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private authService: AuthenticationService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -56,6 +56,27 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.authService.authenticationState.subscribe(state => {
+          console.log(`estado do usuario ${state}`);
+          //this.authentication = state;
+          if (state) {
+              this.router.navigate(['home']);
+          } else {
+              this.router.navigate(['login']);
+          }
+      });
     });
+  }
+
+  SignOut() {
+      const router = this.router;
+      this.authService.Logout()
+      .then(function(res) {
+          console.log(res);
+          router.navigateByUrl('/login');
+      }).catch(function(err) {
+          console.log(err);
+      });
   }
 }

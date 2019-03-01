@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { Router } from '@angular/router';
 import { NavController, MenuController } from '@ionic/angular';
 import { ContentService } from '../../services/content/content.service';
@@ -8,14 +8,19 @@ import { ContentService } from '../../services/content/content.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+
   constructor(
     private menuCtrl: MenuController,
     private navCtrl: NavController,
-    private contentService: ContentService
-  ) {}
+    private contentService: ContentService,
+  ) { }
 
-  openMenu(){
+  ngOnInit() {
+    this.menuCtrl.enable(true);
+  }
+
+  openMenu() {
      this.menuCtrl.open();
   }
 

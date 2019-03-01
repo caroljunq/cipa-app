@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane>
+  <ion-split-pane >
     <ion-menu class="custom-menu">
       <ion-header>
         <ion-toolbar class="custom-toolbar">
@@ -18,6 +18,14 @@
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" (click)="SignOut();">
+            <ion-item lines="none">
+              <ion-icon slot="start" [name]="'exit'"> </ion-icon>
+              <ion-label>
+                Sair
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
