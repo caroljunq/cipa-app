@@ -40,25 +40,28 @@ export class LoginPage implements OnInit {
     switch (loginStatus) {
         case 'auth/invalid-email':
             message = 'E-mail inválido';
+            this.PresentToast(message, 4000);
             break;
         case 'auth/user-disabled':
             message = 'Usuário desabilitado';
+            this.PresentToast(message, 4000);
             break;
         case 'auth/user-not-found':
             message = 'Usuário não encontrado';
+            this.PresentToast(message, 4000);
             break;
         case 'auth/wrong-password':
             message = 'Senha incorreta';
+            this.PresentToast(message, 4000);
+            break;
+        case 'user-email-not-verified':
+            this.authService.SimpleLogout();
+            message = 'E-mail não verificado, por favor cheque sua caixa de e-mails';
+            this.PresentToast(message, 4000);
             break;
         default:
-            message = 'Entrando...';
-            setTimeout(() => {
-              this.router.navigateByUrl('/home');
-            }, 4000);
             break;
     }
-    this.PresentToast(message, 4000);
-
   }
 
   async PresentToast(message, duration) {

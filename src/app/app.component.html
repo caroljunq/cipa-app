@@ -4,9 +4,10 @@
       <ion-header>
         <ion-toolbar class="custom-toolbar">
           <ion-row>
+            <!-- Devemos adicionar uma foto de perfil?? -->
             <ion-icon name="contact"></ion-icon>
-            <ion-label>Pesquisadora</ion-label>
-            <ion-label>cipaapp@example.com</ion-label>
+            <ion-label> {{ currentUser?.displayName }} </ion-label>
+            <ion-label> {{ currentUser?.email }} </ion-label>
           </ion-row>
           <!-- <ion-title>Menu</ion-title> -->
         </ion-toolbar>

@@ -16,6 +16,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 // Services
 import { ContentService } from './services/content/content.service';
@@ -43,7 +44,8 @@ import { AuthGuardService } from './services/firebase/auth-guard.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ContentService,
-    AuthGuardService
+    AuthGuardService, 
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })

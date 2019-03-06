@@ -3,6 +3,7 @@ import { AuthenticationService } from '../../services/firebase/authentication.se
 import { User } from 'src/app/services/models/user';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-create-account',
@@ -19,7 +20,8 @@ export class CreateAccountPage implements OnInit {
 
   constructor(private authService: AuthenticationService,
               public toastController: ToastController,
-              private router: Router) { }
+              private router: Router,
+              private db: AngularFirestore) { }
 
   ngOnInit() {
     // Reiniciando as variaveis
@@ -58,6 +60,16 @@ export class CreateAccountPage implements OnInit {
             break;
         case 'user-created':
             this.PresentToast('Usuário criado com sucesso!', 4000);
+
+            // Criar um campo no firestore para o cliente
+            this.db.collection('users').doc(this.email).set({
+                name: this.name,
+                job: ' ',
+                phone: ' ',
+                age: ' ',
+                gender: ' ',
+                cases: []
+            });
             setTimeout(() => {
               this.router.navigateByUrl('/login');
             }, 4000);
