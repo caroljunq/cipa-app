@@ -21,14 +21,14 @@ export class AppComponent implements OnInit {
       icon: 'contact'
     },
     {
-      title: 'Locais de Apoio',
-      url: '/support-locations',
-      icon: 'navigate'
-    },
-    {
-      title: 'Casos',
+      title: 'Atendimentos',
       url: '/cases',
       icon: 'medical'
+    },
+    {
+      title: 'Referências',
+      url: '/ref',
+      icon: 'book'
     },
     {
       title: 'Criação e Apoio',

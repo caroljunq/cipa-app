@@ -5,6 +5,9 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
 
+import { city_list } from '../../services/cities/Cidades';
+import { state_list } from '../../services/cities/Estados';
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.page.html',
@@ -12,8 +15,23 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class CreateAccountPage implements OnInit {
 
+  listaDeEstados = state_list;
+  listaDeCidades = city_list;
   name: string;
   email: string;
+  selectedState = null; /* {
+    id: null,
+    sigla: null,
+    nome: null
+  };*/
+  selectedCity: object;
+  formation: string;
+  otherFormation: string;
+  actionArea: string;
+  otherArea: string;
+  pastXp: string;
+  pastXpClass: string;
+  otherPastXpClass: string;
   password: string;
   confirmedPassword: string;
   user = {} as User;
@@ -29,6 +47,8 @@ export class CreateAccountPage implements OnInit {
     this.email = '';
     this.password = '';
     this.confirmedPassword = '';
+
+    console.log(state_list);
   }
 
   async VerifyFields() {

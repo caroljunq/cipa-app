@@ -70,7 +70,13 @@ const routes: Routes = [
     path: 'diag-select-group',
     canActivate: [AuthGuardService],
     loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule'
+  },
+  {
+    path: 'new-case',
+    canActivate: [AuthGuardService],
+    loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
   }
+
 ];
 
 @NgModule({
