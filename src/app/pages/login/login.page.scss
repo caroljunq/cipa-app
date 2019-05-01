@@ -40,6 +40,14 @@
     --box-shadow: 5px 6px 20px #00000f;
 }
 
+a{
+    color: white;
+}
+
+a:hover{
+    color: blue;
+}
+
 .createAccountLink{
     text-transform: uppercase;
     color: #cdeacf; 

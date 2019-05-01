@@ -10,7 +10,7 @@
       <ion-input placeholder="Nome" [(ngModel)]="name" class="Input"></ion-input>
     </ion-row>
     <ion-row> 
-      <ion-select class="Input" placeholder="Sexo">
+      <ion-select class="Input" placeholder="Sexo" [(ngModel)]="sex">
         <ion-select-option value="f"> Feminino </ion-select-option>
         <ion-select-option value="m"> Masculino </ion-select-option>
       </ion-select>
@@ -19,7 +19,7 @@
       <ion-datetime class="Input"
       displayFormat="DD MM YYYY" 
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
-      placeholder="Data de Nascimento"></ion-datetime>
+      placeholder="Data de Nascimento" [(ngModel)]="dob"></ion-datetime>
     </ion-row>
     <ion-row>
       <ion-select class="Input" placeholder="Estado" [(ngModel)]="selectedState">
@@ -28,8 +28,8 @@
     </ion-row>
     <ion-row *ngIf="selectedState">
       <ion-select class="Input" placeholder="Cidade" [(ngModel)]="selectedCity">
-        <ng-container *ngFor="let city of listaDeCidades">
-          <ion-select-option *ngIf="city.estado == selectedState.id" [value]="city"> {{city.nome}} </ion-select-option>
+        <ng-container *ngFor="let city of listaDeCidades[selectedState.id]">
+          <ion-select-option [value]="city"> {{city.nome}} </ion-select-option>
         </ng-container>
       </ion-select>
     </ion-row>
@@ -54,14 +54,16 @@
         <ion-input class="Input" placeholder="Digite sua área de atuação" [(ngModel)]="otherArea"> </ion-input> 
     </ion-row>
     <ion-row>
-        <ion-select class="Input" placeholder="Tem experiêncial profissional com violência doméstica contra criança?" [(ngModel)]="pastXp">
+        <ion-label> Tem experiêncial profissional com violência doméstica contra criança? </ion-label>
+        <ion-select class="Input" placeholder="Selecione..." [(ngModel)]="pastXp">
             <ion-select-option value="sim"> Sim </ion-select-option>
             <ion-select-option value="nao"> Não </ion-select-option>
             <ion-select-option value="nsa"> Não se aplica </ion-select-option>
         </ion-select>
     </ion-row>
     <ion-row>
-        <ion-select class="Input" placeholder="Tem experiência profissional com classificações de Enfermagem?" [(ngModel)]="pastXpClass">
+        <ion-label> Tem experiência profissional com classificações de Enfermagem? </ion-label>
+        <ion-select class="Input" placeholder="Selecione..." [(ngModel)]="pastXpClass">
             <ion-select-option value="CIPE"> Sim, CIPE </ion-select-option>
             <ion-select-option value="NANDA"> Sim, NANDA/ NIC/ NOC </ion-select-option>
             <ion-select-option value="nao"> Não </ion-select-option>

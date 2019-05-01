@@ -137,4 +137,16 @@ export class AuthenticationService {
     });
   }
 
+  SendPasswordResetEmail(email){
+      const aux = this.authService.auth;
+      return new Promise( function(resolve, reject) {
+          aux.sendPasswordResetEmail(email)
+          .then(() => {
+              resolve('Enviado');
+          }).catch(err => {
+              reject(err); 
+          })
+      });
+  }
+
 }
