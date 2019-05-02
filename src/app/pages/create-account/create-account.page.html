@@ -7,7 +7,72 @@
         <p> Criar uma conta </p>
     </ion-row>
     <ion-row>
-      <ion-input placeholder="Nome Completo" [(ngModel)]="name" class="Input"></ion-input>
+      <ion-input placeholder="Nome" [(ngModel)]="name" class="Input"></ion-input>
+    </ion-row>
+    <ion-row> 
+      <ion-select class="Input" placeholder="Sexo" [(ngModel)]="sex">
+        <ion-select-option value="f"> Feminino </ion-select-option>
+        <ion-select-option value="m"> Masculino </ion-select-option>
+      </ion-select>
+    </ion-row>
+    <ion-row> 
+      <ion-datetime class="Input"
+      displayFormat="DD MM YYYY" 
+      monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
+      placeholder="Data de Nascimento" [(ngModel)]="dob"></ion-datetime>
+    </ion-row>
+    <ion-row>
+      <ion-select class="Input" placeholder="Estado" [(ngModel)]="selectedState">
+        <ion-select-option *ngFor="let state of listaDeEstados" [value]="state"> {{state.sigla}} </ion-select-option>
+      </ion-select>
+    </ion-row>
+    <ion-row *ngIf="selectedState">
+      <ion-select class="Input" placeholder="Cidade" [(ngModel)]="selectedCity">
+        <ng-container *ngFor="let city of listaDeCidades[selectedState.id]">
+          <ion-select-option [value]="city"> {{city.nome}} </ion-select-option>
+        </ng-container>
+      </ion-select>
+    </ion-row>
+    <ion-row>
+      <ion-select class="Input" placeholder="Formação" [(ngModel)]="formation">
+          <ion-select-option value="enfermeira"> Enfermeira(o)  </ion-select-option>
+          <ion-select-option value="estudante"> Estudante de enfermagem </ion-select-option>
+          <ion-select-option value="outro"> Outro... </ion-select-option>
+      </ion-select>
+    </ion-row>
+    <ion-row *ngIf="formation === 'outro'"> 
+      <ion-input class="Input" placeholder="Digite sua formação..." [(ngModel)]="otherFormation"> </ion-input> 
+    </ion-row>
+    <ion-row>
+        <ion-select class="Input" placeholder="Área de Atuação" [(ngModel)]="actionArea">
+            <ion-select-option value="enfermeira"> Atenção Primaria a Saúde </ion-select-option>
+            <ion-select-option value="estudante"> Hospitalar </ion-select-option>
+            <ion-select-option value="outro"> Outro... </ion-select-option>
+        </ion-select>
+    </ion-row>
+    <ion-row *ngIf="actionArea === 'outro'"> 
+        <ion-input class="Input" placeholder="Digite sua área de atuação" [(ngModel)]="otherArea"> </ion-input> 
+    </ion-row>
+    <ion-row>
+        <ion-label> Tem experiêncial profissional com violência doméstica contra criança? </ion-label>
+        <ion-select class="Input" placeholder="Selecione..." [(ngModel)]="pastXp">
+            <ion-select-option value="sim"> Sim </ion-select-option>
+            <ion-select-option value="nao"> Não </ion-select-option>
+            <ion-select-option value="nsa"> Não se aplica </ion-select-option>
+        </ion-select>
+    </ion-row>
+    <ion-row>
+        <ion-label> Tem experiência profissional com classificações de Enfermagem? </ion-label>
+        <ion-select class="Input" placeholder="Selecione..." [(ngModel)]="pastXpClass">
+            <ion-select-option value="CIPE"> Sim, CIPE </ion-select-option>
+            <ion-select-option value="NANDA"> Sim, NANDA/ NIC/ NOC </ion-select-option>
+            <ion-select-option value="nao"> Não </ion-select-option>
+            <ion-select-option value="nsa"> Não se aplica </ion-select-option>
+            <ion-select-option value="outro"> Outro </ion-select-option>
+        </ion-select>
+    </ion-row>
+    <ion-row *ngIf="pastXpClass === 'outro'"> 
+        <ion-input class="Input" placeholder="Digite sua experiência" [(ngModel)]="otherPastXpClass"> </ion-input> 
     </ion-row>
     <ion-row>
       <ion-input placeholder="Email" [(ngModel)]="email" class="Input"></ion-input>

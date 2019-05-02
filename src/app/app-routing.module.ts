@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule' 
   },
+  { 
+    path: 'forgot-password',
+    loadChildren: './pages/forgot-password/forgot-password.module#ForgotPasswordPageModule'
+  },
   {
     path: 'home',
     canActivate: [AuthGuardService],
@@ -70,6 +74,16 @@ const routes: Routes = [
     path: 'diag-select-group',
     canActivate: [AuthGuardService],
     loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule'
+  },
+  {
+    path: 'new-case',
+    canActivate: [AuthGuardService],
+    loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
+  },
+  { 
+    path: 'change-password', 
+    canActivate: [AuthGuardService],
+    loadChildren: './pages/change-password/change-password.module#ChangePasswordPageModule' 
   }
 ];
 
