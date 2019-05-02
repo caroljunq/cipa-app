@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/firebase/authentication.service';
 import { User, UserInfo } from 'src/app/services/models/user';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { state_list } from '../../services/cities/Estados';
@@ -32,8 +32,8 @@ export class CreateAccountPage implements OnInit {
   name: string;
   sex: string; 
   dob: any;
-  selectedState = null; 
-  selectedCity: object;
+  selectedState = null;
+  selectedCity = null;
 
   /** Informações profissionais do usuario  */
   formation: string;
@@ -49,6 +49,8 @@ export class CreateAccountPage implements OnInit {
   password: string;
   confirmedPassword: string;
 
+  tried: boolean = false; 
+
   /** Objeto user  */
   user = {} as User;
   userInfo = {} as UserInfo;
@@ -57,7 +59,8 @@ export class CreateAccountPage implements OnInit {
               public toastController: ToastController,
               private router: Router,
               private db: AngularFirestore, 
-              private alertController: AlertController) { }
+              private alertController: AlertController,
+              private loadingCtrl: LoadingController) { }
 
   ngOnInit() {    
     // Reiniciando as variaveis
@@ -80,10 +83,7 @@ export class CreateAccountPage implements OnInit {
     this.confirmedPassword = '';
   }
 
-  accepted () {
-      console.log('aceitou'); 
-      //console.log(this.user)
-
+  async accepted () {  
       this.userInfo.name = this.name; 
       this.userInfo.sex = this.sex; 
       this.userInfo.dob = this.dob; 
@@ -96,34 +96,28 @@ export class CreateAccountPage implements OnInit {
       this.userInfo.pastXp = this.pastXp; 
       this.userInfo.pastXpClass = this.pastXpClass;
       this.userInfo.otherPastXpClass = this.otherPastXpClass;
-      this.userInfo.email = this.email; 
-      this.userInfo.password = this.password; 
-      this.userInfo.confirmedPassword = this.confirmedPassword;
 
       console.log(this.userInfo);
-  }
 
-  rejected = function () {
-      console.log('rejeitou');
-  }
-
-  async VerifyFields() {
-    let status;
-    if (this.name === '' || this.email === '' || this.password === '' || this.confirmedPassword === '') {
-      this.PresentToast('Preencha todos os campos', 3000);
-    } else if (this.password !== this.confirmedPassword) {
-      this.PresentToast('As senhas são diferentes', 3000);
-    } else {
-      this.presentAlertConfirm( this.accepted, this.rejected );
-      /*console.log(this.name, this.email, this.password, this.confirmedPassword);
-      this.userInfo..displayName = this.name;
-      this.userInfo..email = this.email;
-      this.userInfo..password = this.password;
-      const registerResult = await this.authService.Register(this.user)
+      /** Criando um usuário no firebase  */
+      let status; 
+      let loading = await this.loadingCtrl.create({
+        spinner: 'bubbles',
+        message: 'Aguarde um momento...'
+      });
+  
+      loading.present();
+      const registerResult = await this.authService.Register({
+          displayName: this.name, 
+          email: this.email, 
+          password: this.password
+      })
       .then(function(resolve) {
           status = resolve;
       }).catch(function(err) {
           status = err.code;
+      }).finally(() => {
+          loading.dismiss();
       });
       switch (status) {
         case 'auth/email-already-in-use':
@@ -139,19 +133,36 @@ export class CreateAccountPage implements OnInit {
             this.PresentToast('Usuário criado com sucesso!', 4000);
 
             // Criar um campo no firestore para o cliente
-            this.db.collection('users').doc(this.email).set({
-                name: this.name,
-                job: ' ',
-                phone: ' ',
-                age: ' ',
-                gender: ' ',
-                cases: []
-            });
+            this.db.collection('users').doc(this.email).set(this.userInfo);
+
+            // Após um segundo vai para a página de login
             setTimeout(() => {
               this.router.navigateByUrl('/login');
             }, 4000);
             break;
-    }*/
+    }
+
+
+  }
+
+  rejected = function () {
+      console.log('rejeitou');
+      this.presentSimpleAlert('Termos de Uso', 'É necessário aceitar os termos de uso para o uso do aplicativo.');
+  }
+
+  async VerifyFields() {
+    let status;
+    if (this.name === '' || this.email === '' || this.password === '' || this.confirmedPassword === '' ||
+        this.sex === '' || this.dob === undefined || this.selectedCity == null || this.selectedState == null ||
+        this.formation == '' || this.actionArea == '' || this.pastXp == '' || this.pastXpClass == '') {
+      this.tried = true;
+      this.PresentToast('Preencha todos os campos', 3000);
+    } else if (this.password !== this.confirmedPassword) {
+        if(this.tried) this.tried = false;
+        this.PresentToast('As senhas são diferentes', 3000);
+    } else {
+      if(this.tried) this.tried = false;
+      this.presentAlertConfirm();      
     }
   }
 
@@ -165,26 +176,39 @@ export class CreateAccountPage implements OnInit {
   }
 
   /** Alert  */
-  async presentAlertConfirm( funAceito, funNAceito ) {
+  async presentAlertConfirm( ) {
     const alert = await this.alertController.create({
       header: 'Termos de Uso',
       message: 'Seus dados de cadastro serão utilizados para analisarmos o perfil dos usuários deste aplicativo e propor melhorias de acesso e navegação para os desenvolvedores. Você aceita?',
-      buttons: [{
+      buttons: [
+        {
           text: 'Não aceito',
           role: 'cancel',
           cssClass: 'danger',
-          handler: funNAceito
-         }, 
-         {
+          handler: () => {
+             this.rejected();
+          }
+        },   
+        {
           text: 'Aceito',
-          handler: funAceito
-        }
+          handler: () => {
+              this.accepted();
+          }
+        }    
       ]
     });
     await alert.present();
   }
 
+  async presentSimpleAlert(header, message) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
 
+    await alert.present();
+  }
 
   CreateAccount() {
     this.VerifyFields();
