@@ -1,6 +1,6 @@
 
 export interface User {
-    diplayName: string;
+    displayName: string;
     email: string;
     password: string;
 }
