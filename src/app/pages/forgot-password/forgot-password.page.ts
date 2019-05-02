@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/firebase/authentication.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class ForgotPasswordPage implements OnInit {
   email: string = ''; 
 
   constructor(private fbService: AuthenticationService,
-              private toastController: ToastController) { }
+              private toastController: ToastController, 
+              private route: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +27,9 @@ export class ForgotPasswordPage implements OnInit {
         this.fbService.SendPasswordResetEmail(this.email)
         .then(res => {
             this.PresentToast(res, 2000);
+            setTimeout(() => {
+                this.route.navigate(['/login']);
+            }, 2200);
         }).catch(err => {
             this.PresentToast(this.SelectBetterMessage(err.code), 3000);
         });
