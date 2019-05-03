@@ -3,8 +3,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../models/user';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
+import * as firebase from 'firebase/app';
 import { Platform } from '@ionic/angular';
-import { auth } from 'firebase';
 
 const TOKEN_KEY = 'auth-token';
 
@@ -20,7 +20,9 @@ export class AuthenticationService {
               private storage: Storage,
               private plt: Platform) {
       this.plt.ready().then(() => {
-          this.checkToken();
+          // this.checkToken();
+          console.log('usuario atual'); 
+          console.log(this.UserInfo());
       });
   }
 
@@ -62,10 +64,38 @@ export class AuthenticationService {
   }
 
   async Login(user: User) {
+    const authService = this.authService;
     const authAux = this.authService.auth;
     const storageAux = this.storage;
     const authState = this.authenticationState;
     return await new Promise(async function (resolve, reject) {
+        const persistenceResult = await authAux.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(async function() {
+            console.log('entrando aqui');
+            const loginResult = await authAux.signInWithEmailAndPassword(user.email, user.password)
+            .then(async function(res) {
+                console.log(res);
+                if ( res.user.emailVerified === false) {
+                      const auxObj = {
+                          message: '',
+                          code: 'user-email-not-verified'
+                      };
+                      reject(auxObj);
+                } else {
+                  resolve(res);
+                }
+                authState.next(true);
+            }).catch(function(err) {
+                console.log(err);
+                reject(err);
+            });
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+        });
+    });
+    /* {
       const loginResult = await authAux.signInWithEmailAndPassword(user.email, user.password)
       .then(async function(res) {
           if ( res.user.emailVerified === false) {
@@ -87,8 +117,24 @@ export class AuthenticationService {
       }).catch(function(err) {
           reject(err);
       });
-    });
+    } */
   }
+
+  /**firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+ */
 
   async Logout() {
     const authAux = this.authService.auth;
