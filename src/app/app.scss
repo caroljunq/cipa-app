@@ -36,20 +36,21 @@ ion-menu-toggle > ion-item{
   margin: 7px;
 
   & > ion-label{
-    color: var(--secondary-color) !important;
+    color: #0459A8 !important;
     text-transform: uppercase;
     font-size: 1.1rem !important;
   }
 
   & > ion-icon{
-    color: var(--primary-color) !important;
+    color: #0459A8 !important;
     font-size: 2rem;
   }
 
 }
 
 ion-button{
-  --background: var(--primary-color);
+  // --background: var(--primary-color);
+  --background: #1C5577;
   width: 90%;
 }
 
@@ -84,7 +85,7 @@ ion-back-button{
 .backIcon{
   margin: 10px;
   font-size: 30px;
-  color: #13ACA7;
+  color: #1C5577;;
 }
 
 p{

@@ -8,17 +8,12 @@
     text-align: center;
 }
 
-.title{
-    color: white;
-}
-
 .newCaseHeader{
-    background: #20A8A4;
+    background: #0459A8;
     height: 60px;
-}
-
-.backIcon{
-    right: 10px;
-    color: white; 
-    font-size: 40px;
+    color: white !important;
+    
+    ion-icon{
+        color: white;
+    }
 }
