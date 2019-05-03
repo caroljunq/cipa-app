@@ -1,7 +1,7 @@
 .backIcon{
     margin: 10px;
     font-size: 30px;
-    color: #13ACA7;
+    color: rgb(4,89,168);
 }
 
 .title, .button{
@@ -10,7 +10,7 @@
 
     p {
         text-transform: uppercase;
-        color: #13ACA7;
+        color: rgb(4,89,168);
         font-weight: 500;
     }
 }
@@ -29,6 +29,7 @@ ion-label{
     margin-left: 20px;
     margin-right: 20px;
     font-size: 14px;
+    color: #0459A8;
 }
 
 .continueButton{
@@ -39,7 +40,8 @@ ion-label{
 
 /** inputs */
 ion-input, ion-select, ion-datetime{
-    border: 1px solid #20A8A4;
+    border: 1px solid rgb(4,89,168);
+    color: #0459A8;
     --padding: 10px;
     --padding-start: 15px;
     width: 100%;
