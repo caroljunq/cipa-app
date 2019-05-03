@@ -97,8 +97,6 @@ export class CreateAccountPage implements OnInit {
       this.userInfo.pastXpClass = this.pastXpClass;
       this.userInfo.otherPastXpClass = this.otherPastXpClass;
 
-      console.log(this.userInfo);
-
       /** Criando um usuário no firebase  */
       let status; 
       let loading = await this.loadingCtrl.create({
@@ -130,7 +128,7 @@ export class CreateAccountPage implements OnInit {
             this.PresentToast('A senha precisa de no mínimo 6 caracteres', 3000);
             break;
         case 'user-created':
-            this.PresentToast('Usuário criado com sucesso!', 4000);
+            this.PresentToast('Usuário criado com sucesso! Por favor verifique um email de verificação de conta na sua caixa de entrada do email cadastrado.', 4000);
 
             // Criar um campo no firestore para o cliente
             this.db.collection('users').doc(this.email).set(this.userInfo);
@@ -146,7 +144,6 @@ export class CreateAccountPage implements OnInit {
   }
 
   rejected = function () {
-      console.log('rejeitou');
       this.presentSimpleAlert('Termos de Uso', 'É necessário aceitar os termos de uso para o uso do aplicativo.');
   }
 
@@ -215,7 +212,7 @@ export class CreateAccountPage implements OnInit {
   }
 
   GetUserInfo() {
-    console.log(this.authService.UserInfo());
+     return this.authService.UserInfo();
   }
 
 }
