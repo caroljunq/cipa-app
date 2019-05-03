@@ -8,16 +8,24 @@ import { interventions_list } from '../interventions-data';
 
 export class ContentService {
   renderContent: any = {
-    category: '',
+    type: 'fortalecimento',
     group: '',
+    category: '',
     data: []
   };
 
   constructor() {}
 
-  // Diagnostics functions
-  getDiagnostics(){
-    return diagnostics_list;
+  setType(type){
+    this.renderContent.type = type;
+  }
+
+  setGroup(group){
+    this.renderContent.group = group;
+  }
+
+  setCategory(category){
+    this.renderContent.category = category;
   }
 
   getSpecificDiagnostics(group){
@@ -26,21 +34,17 @@ export class ContentService {
     })
   }
 
-  // interventions functions
-  getInterventions(){
-    return interventions_list;
+  getSpecificInterventions(group){
+    return interventions_list.filter( el => {
+      return el.group == group;
+    })
   }
 
-  setRenderContent(category, group){
-    this.renderContent = {
-      category: category,
-      group: group
-    }
-
-    if(group != ''){
+  setData(group){
+    if(this.renderContent.category == 'diagnosticos' ){
       this.renderContent.data = this.getSpecificDiagnostics(group)
     } else{
-      this.renderContent.data = this.getInterventions();
+      this.renderContent.data = this.getSpecificInterventions(group);
     }
   }
 

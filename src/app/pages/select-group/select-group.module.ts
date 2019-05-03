@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DiagSelectGroupPage } from './diag-select-group.page';
+import { SelectGroupPage } from './select-group.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DiagSelectGroupPage
+    component: SelectGroupPage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DiagSelectGroupPage]
+  declarations: [SelectGroupPage]
 })
-export class DiagSelectGroupPageModule {}
+export class SelectGroupPageModule {}

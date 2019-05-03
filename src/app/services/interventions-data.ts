@@ -1,364 +1,364 @@
 const interventions = [
 	{
 		id: 10,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Acolher a criança/família/cuidadores em suas necessidades",
 		ivc: 100
 	},
 	{
 		id: 11,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar o desempenho escolar adequado da criança",
 		ivc: 100
 	},
 	{
 		id: 12,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Estabelecer vínculo e relação de confiança com a criança/família/cuidadores",
 		ivc: 100
 	},
 	{
 		id: 13,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Estimular e reforçar o fortalecimento da rede de apoio formada por amigos e familiares da criança/família/cuidadores",
 		ivc: 100
 	},
 	{
 		id: 14,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Construir com as crianças formas para que possam estabelecer vínculos de confiança com adultos que sejam protetores para elas",
 		ivc: 89
 	},
 	{
 		id: 15,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar as habilidades de comunicação ",
 		ivc: 89
 	},
 	{
 		id: 16,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar e apoiar as ações de respostas adequadas às necessidades de saúde",
 		ivc: 89
 	},
 	{
 		id: 17,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar e estimular o relacionamento próximo e afetivo entre pais/cuidadores e criança ",
 		ivc: 89
 	},
 	{
 		id: 18,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar e reforçar as atitudes de realizar o cuidado",
 		ivc: 89
 	},
 	{
 		id: 19,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Elogiar o desenvolvimento adequado da criança",
 		ivc: 89
 	},
 	{
 		id: 20,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Estimular e estabelecer conjuntamente mecanismos de defesa apropriados",
 		ivc: 89
 	},
 	{
 		id: 21,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Incentivar a criança/família a planejar o futuro",
 		ivc: 89
 	},
 	{
 		id: 22,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Oferecer feedback à criança/família quanto a seu enfrentamento da situação de violência doméstica",
 		ivc: 89
 	},
 	{
 		id: 23,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Orientar e encorajar vínculos afetivos e de cuidado entre os pais/cuidadores e as crianças",
 		ivc: 89
 	},
 	{
 		id: 24,
-		group: "criança",
+		group: "crianca",
 		type: "fortalecimento",
 		text: "Reforçar as habilidades e os pontos positivos identificados pela própria criança/família/cuidadores para o enfrentamento da violência doméstica",
 		ivc: 89
 	},
 	{
 		id: 55,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Abordar com atenção de maneira não punitiva e com segurança a fim de fortalecer a confiança ",
 		ivc: 100
 	},
 	{
 		id: 56,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Acolher a criança/família/cuidadores em suas necessidades",
 		ivc: 100
 	},
 	{
 		id: 57,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Articular com outros profissionais e outros setores a intervenção junto à criança/família/cuidadores e o monitoramento do caso ",
 		ivc: 90
 	},
 	{
 		id: 58,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Atender a criança em ambiente com privacidade e segurança",
 		ivc: 90
 	},
 	{
 		id: 59,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Atender de acordo com o protocolo específico com ações de caráter clínico e de proteção à criança ",
 		ivc: 90
 	},
 	{
 		id: 60,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Atender os pais/cuidadores em separado entre si e da criança no caso da suspeita da violência incorrer sobre eles ",
 		ivc: 90
 	},
 	{
 		id: 61,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Avaliar a capacidade de compreensão das informações usar linguagem acessível e sem pré-julgamentos e apresentar as informações de maneira gradual e objetiva ",
 		ivc: 90
 	},
 	{
 		id: 62,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Estabelecer com a criança/família/cuidadores ações para o enfrentamento da violência doméstica",
 		ivc: 90
 	},
 	{
 		id: 63,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Identificar comportamento agressivos e/ou processo de mascaramento de sentimentos expressos em comportamentos agressivos ",
 		ivc: 90
 	},
 	{
 		id: 64,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Construir com as crianças formas para que possam estabelecer vínculos de confiança com adultos que sejam protetores para elas",
 		ivc: 89
 	},
 	{
 		id: 65,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Oferecer feedback à criança/família quanto a seu enfrentamento da situação de violência doméstica",
 		ivc: 89
 	},
 	{
 		id: 66,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Orientar e encorajar vínculos afetivos e de cuidado entre os pais/cuidadores e as crianças",
 		ivc: 89
 	},
 	{
 		id: 67,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Ajudar a criança/família a relembrar situações adversas superadas encorajando-as a enfrentar a situação atual ",
 		ivc: 80
 	},
 	{
 		id: 68,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Auxiliar a criança a compreender que não tem culpa da situação de violência",
 		ivc: 80
 	},
 	{
 		id: 69,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Avaliar as necessidades e garantir as medidas protetivas imediatas ",
 		ivc: 80
 	},
 	{
 		id: 70,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Discutir sobre educação sexual/sexualidade ",
 		ivc: 80
 	},
 	{
 		id: 71,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Encorajar a expressão e a verbalização de percepções sentimentos medos e dificuldades",
 		ivc: 80
 	},
 	{
 		id: 72,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Estabelecer vínculo com a criança/família/cuidadores",
 		ivc: 80
 	},
 	{
 		id: 73,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Estimular o uso de recursos espirituais se desejado ",
 		ivc: 80
 	},
 	{
 		id: 74,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Evitar perguntar direta e frequentemente sobre os detalhes da violência sofrida",
 		ivc: 80
 	},
 	{
 		id: 75,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Identificar as necessidades da criança em situações de violência ",
 		ivc: 80
 	},
 	{
 		id: 76,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Investigar a possibilidade de a criança estar sofrendo violência",
 		ivc: 80
 	},
 	{
 		id: 77,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Monitorar ideação/gestos suicidas",
 		ivc: 80
 	},
 	{
 		id: 78,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Notificar o caso suspeito ou confirmado de violência",
 		ivc: 80
 	},
 	{
 		id: 79,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Observar na criança sinais de erotização precoce e/ou atitudes sexuais impróprias para a idade ",
 		ivc: 80
 	},
 	{
 		id: 80,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre ansiedade/estresse/humor deprimido/tristeza/depressão",
 		ivc: 80
 	},
 	{
 		id: 81,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre apoio emocional",
 		ivc: 80
 	},
 	{
 		id: 82,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre comportamento sexual inapropriado",
 		ivc: 80
 	},
 	{
 		id: 83,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre desempenho/frequência/convivência escolar",
 		ivc: 80
 	},
 	{
 		id: 84,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre higiene corporal e/ou oral",
 		ivc: 80
 	},
 	{
 		id: 85,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre recursos para controlar a ansiedade",
 		ivc: 80
 	},
 	{
 		id: 86,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre sinais de desconforto",
 		ivc: 80
 	},
 	{
 		id: 87,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Obter dados sobre uso/abuso/abstinência de álcool e/ou drogas",
 		ivc: 80
 	},
 	{
 		id: 88,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Orientar sobre sono",
 		ivc: 80
 	},
 	{
 		id: 89,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Ouvir as preocupações sentimentos e perguntas e oferecer as informações solicitadas pela criança/família/cuidadores",
 		ivc: 80
 	},
 	{
 		id: 90,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Providenciar ambiente com brinquedos acessíveis e compatíveis com a idade",
 		ivc: 80
 	},
 	{
 		id: 91,
-		group: "criança",
+		group: "crianca",
 		type: "desgastes",
 		text: "Reforçar aspectos positivos",
 		ivc: 80

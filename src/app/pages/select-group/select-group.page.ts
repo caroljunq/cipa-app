@@ -3,23 +3,22 @@ import { NavController } from '@ionic/angular';
 import { ContentService } from '../../services/content/content.service';
 
 @Component({
-  selector: 'app-diag-select-group',
-  templateUrl: './diag-select-group.page.html',
-  styleUrls: ['./diag-select-group.page.scss'],
+  selector: 'app-select-group',
+  templateUrl: './select-group.page.html',
+  styleUrls: ['./select-group.page.scss'],
 })
-export class DiagSelectGroupPage implements OnInit {
+export class SelectGroupPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
     private contentService: ContentService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  listDiagnostics(group){
-    this.contentService.setRenderContent('diagnostics', group);
+  selectGroup(group){
+    this.contentService.setGroup(group);
+    this.contentService.setData(group);
     this.navCtrl.navigateForward('/generic-list-items');
   }
-
 }
