@@ -1,6 +1,6 @@
 .backIcon{
     margin: 10px;
-    font-size: 30px;
+    font-size: 2.2rem;
     color: rgb(4,89,168);
 }
 
@@ -28,8 +28,9 @@
 ion-label{
     margin-left: 20px;
     margin-right: 20px;
-    font-size: 14px;
+    // font-size: 14px;
     color: #0459A8;
+    font-size: 0.9rem;
 }
 
 .continueButton{
@@ -48,4 +49,14 @@ ion-input, ion-select, ion-datetime{
     height: 60px;
     margin: 10px;
 
+}
+
+.perguntas{
+    margin-left: 15px;
+    margin-right: 0px;
+    line-height: 1.5;
+}
+
+ion-row{
+    margin-bottom: 10px;
 }

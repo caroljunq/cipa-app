@@ -37,7 +37,7 @@
       <ion-select class="Input" placeholder="Formação" [ngClass]="{ 'alert': tried && formation == '' }" [(ngModel)]="formation">
           <ion-select-option value="enfermeira"> Enfermeira(o)  </ion-select-option>
           <ion-select-option value="estudante"> Estudante de enfermagem </ion-select-option>
-          <ion-select-option value="outro"> Outro... </ion-select-option>
+          <ion-select-option value="outro"> Outro </ion-select-option>
       </ion-select>
     </ion-row>
     <ion-row *ngIf="formation === 'outro'"> 
@@ -47,14 +47,14 @@
         <ion-select class="Input" placeholder="Área de Atuação" [ngClass]="{ 'alert': tried && actionArea == '' }" [(ngModel)]="actionArea">
             <ion-select-option value="enfermeira"> Atenção Primaria a Saúde </ion-select-option>
             <ion-select-option value="estudante"> Hospitalar </ion-select-option>
-            <ion-select-option value="outro"> Outro... </ion-select-option>
+            <ion-select-option value="outro"> Outro </ion-select-option>
         </ion-select>
     </ion-row>
     <ion-row *ngIf="actionArea === 'outro'"> 
         <ion-input class="Input" placeholder="Digite sua área de atuação" [(ngModel)]="otherArea"> </ion-input> 
     </ion-row>
     <ion-row>
-        <ion-label> Tem experiêncial profissional com violência doméstica contra criança? </ion-label>
+        <ion-label class="perguntas"> Tem experiêncial profissional com violência doméstica contra criança? </ion-label>
         <ion-select class="Input" placeholder="Selecione..." [ngClass]="{ 'alert': tried && pastXp == '' }" [(ngModel)]="pastXp">
             <ion-select-option value="sim"> Sim </ion-select-option>
             <ion-select-option value="nao"> Não </ion-select-option>
@@ -62,7 +62,7 @@
         </ion-select>
     </ion-row>
     <ion-row>
-        <ion-label> Tem experiência profissional com classificações de Enfermagem? </ion-label>
+        <ion-label class="perguntas"> Tem experiência profissional com classificações de Enfermagem? </ion-label>
         <ion-select class="Input" placeholder="Selecione..." [ngClass]="{ 'alert': tried && pastXpClass == '' }" [(ngModel)]="pastXpClass">
             <ion-select-option value="CIPE"> Sim, CIPE </ion-select-option>
             <ion-select-option value="NANDA"> Sim, NANDA/ NIC/ NOC </ion-select-option>

@@ -84,7 +84,7 @@ ion-back-button{
 
 .backIcon{
   margin: 10px;
-  font-size: 30px;
+  font-size: 2.2rem;
   color: #1C5577;
 }
 
@@ -93,5 +93,8 @@ p{
 }
 
 div.alert-radio-label{
+  white-space: inherit !important;
   text-transform: capitalize !important;
 }
+
+

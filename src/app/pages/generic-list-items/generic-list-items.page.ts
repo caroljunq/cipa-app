@@ -47,6 +47,7 @@ export class GenericListItemsPage implements OnInit {
 
   ngOnInit() {
     this.renderContent = this.contentService.getRenderContent();
+    this.renderContent.type = 'fortalecimento';
 
     //retrieve data from db
     this.userDataService.getUserFavorites()
@@ -72,6 +73,7 @@ export class GenericListItemsPage implements OnInit {
     let localFavorites = this.storage.get('favorites').then((arr) => {
       if(arr){
         this.favorites = arr;
+        this.userDataService.updateUserFavorites(this.favorites);
         this.favoriteItems = this.getFavoriteItems();
       }
     })

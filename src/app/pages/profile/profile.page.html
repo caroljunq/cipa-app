@@ -60,7 +60,7 @@
             <ion-select [(ngModel)]="user.formation" [value]="user.formation" >
                 <ion-select-option value="enfermeira"> Enfermeira(o)  </ion-select-option>
                 <ion-select-option value="estudante"> Estudante de enfermagem </ion-select-option>
-                <ion-select-option value="outro"> Outro... </ion-select-option>
+                <ion-select-option value="outro"> Outro </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -81,7 +81,7 @@
                 <!-- preencher com os campos -->
                 <ion-select-option value="enfermeira"> Atenção Primaria a Saúde </ion-select-option>
                 <ion-select-option value="estudante"> Hospitalar </ion-select-option>
-                <ion-select-option value="outro"> Outro... </ion-select-option>
+                <ion-select-option value="outro"> Outro </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -130,21 +130,21 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-              <ion-button (click)="VerifyUser()" expand="full"> Salvar Mudanças </ion-button>
-          </ion-col>
+        <ion-row justify-content-center>
+            <ion-button (click)="VerifyUser()" expand="full"> Salvar Mudanças </ion-button>
         </ion-row>
         <ion-row>
           <ion-col>
-              <p> Email: </p>
-              <strong> <p> {{ userInfo.email }} </p>  </strong>
+            <ion-item>
+              <ion-label position="floating"> Email  </ion-label>
+              <ion-input [value]="userInfo.email" [disabled]="true"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-              <ion-button (click)="SendEmail()" expand="full"> Trocar Senha </ion-button>
-          </ion-col>
+        <ion-row justify-content-center>
+         
+            <ion-button (click)="SendEmail()" expand="full"> Mudar Senha </ion-button>
+        
         </ion-row>
 
         
