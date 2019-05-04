@@ -23,6 +23,8 @@ import { ContentService } from './services/content/content.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AuthGuardService } from './services/firebase/auth-guard.service';
+import { FirestoreSettingsToken } from '@angular/fire/firestore';
+
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { AuthGuardService } from './services/firebase/auth-guard.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: FirestoreSettingsToken, useValue: {} },
     ContentService,
     AuthGuardService, 
     AngularFirestore
