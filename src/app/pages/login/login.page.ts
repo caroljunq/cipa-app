@@ -32,6 +32,7 @@ export class LoginPage implements OnInit {
     this.user.email = this.email;
     this.user.password = this.password;
     await this.authService.Login(this.user).then(function(res) {
+        console.log('login feito');
         loginStatus = res;
     }).catch(function(err) {
         loginStatus = err.code;

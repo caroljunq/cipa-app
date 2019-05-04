@@ -4,6 +4,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/firebase/authentication.service';
 import { Router } from '@angular/router';
+import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -46,18 +48,31 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private authService: AuthenticationService,
     private router: Router,
+    private db: AngularFirestore,
   ) {
     this.initializeApp();
   }
 
   ngOnInit() {
+    this.splashScreen.show();
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this.platform.ready().then(() => {
 
+      this.statusBar.styleDefault();
+      // this.splashScreen.hide();
+
+      const aux = this.authService;
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log('usuario logado '); 
+            aux.authenticationState.next(true);
+        } else {
+            console.log('usuario deslogado');
+            aux.authenticationState.next(false);
+        }
+    });
       this.authService.authenticationState.subscribe(state => {
           //this.authentication = state;
           if (state) {
@@ -69,6 +84,7 @@ export class AppComponent implements OnInit {
           } else {
               this.router.navigate(['login']);
           }
+          this.splashScreen.hide();
       });
     });
   }

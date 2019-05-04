@@ -16,7 +16,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Services
 import { ContentService } from './services/content/content.service';
@@ -36,7 +36,8 @@ import { AuthGuardService } from './services/firebase/auth-guard.service';
     MatExpansionModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(), 
+    AngularFirestoreModule.enablePersistence()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
