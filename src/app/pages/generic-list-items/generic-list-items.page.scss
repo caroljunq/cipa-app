@@ -35,6 +35,10 @@ mat-panel-description {
   display: none;
 }
 
-// .searchbar-input{
-//
-// }
+ion-select{
+  text-transform: capitalize;
+}
+
+.title-less{
+  font-weight: 500;
+}

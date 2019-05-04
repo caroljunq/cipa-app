@@ -71,15 +71,15 @@ const routes: Routes = [
     loadChildren: './pages/generic-list-items/generic-list-items.module#GenericListItemsPageModule'
   },
   {
-    path: 'diag-select-group',
+    path: 'select-group',
     canActivate: [AuthGuardService],
-    loadChildren: './pages/diag-select-group/diag-select-group.module#DiagSelectGroupPageModule'
+    loadChildren: './pages/select-group/select-group.module#SelectGroupPageModule'
   },
-  {
-    path: 'new-case',
-    canActivate: [AuthGuardService],
-    loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
-  },
+  // {
+  //   path: 'new-case',
+  //   canActivate: [AuthGuardService],
+  //   loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
+  // },
   { 
     path: 'change-password', 
     canActivate: [AuthGuardService],

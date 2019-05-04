@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
       url: '/profile',
       icon: 'contact'
     },
-    {
-      title: 'Atendimentos',
-      url: '/cases',
-      icon: 'medical'
-    },
+    // {
+    //   title: 'Atendimentos',
+    //   url: '/cases',
+    //   icon: 'medical'
+    // },
     {
       title: 'Referências',
       url: '/ref',

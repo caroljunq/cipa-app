@@ -24,8 +24,9 @@ export class HomePage implements OnInit {
      this.menuCtrl.open();
   }
 
-  listInterventions(){
-    this.contentService.setRenderContent('interventions', '');
-    this.navCtrl.navigateForward('/generic-list-items');
+  navigateCategory(category){
+    this.contentService.setCategory(category);
+    this.navCtrl.navigateForward('/select-group');
   }
+  
 }
