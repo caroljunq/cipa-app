@@ -42,19 +42,14 @@ export class ProfilePage implements OnInit {
       this.userDoc = this.db.doc('users/' + this.userInfo.email);
       this.singleUser = this.userDoc.valueChanges();
 
-      this.singleUser.subscribe((res) => {
-          console.log(`Objeto a ser lido:`, res);
+      this.singleUser.subscribe((res) => {;
           this.user = res;
           this.state = res.selectedState; 
           this.city = res.selectedCity;
-
-          console.log(this.city.nome); 
-          console.log(this.state.nome);
       });
   }
 
   VerifyUser(){
-      console.log(this.user);
       // Atualizar informações do usuario 
       const docRef = this.db.collection('users').doc(this.userInfo.email); 
 
@@ -66,7 +61,6 @@ export class ProfilePage implements OnInit {
   }
 
   SendEmail() {
-      console.log(this.userInfo.email);
       this.authService.SendPasswordResetEmail(this.userInfo.email).then(() => {
           this.PresentToast('Email para troca de senha enviado com sucesso!', 4000);
       }).catch((err) => {

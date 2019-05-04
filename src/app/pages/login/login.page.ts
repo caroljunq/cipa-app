@@ -36,7 +36,6 @@ export class LoginPage implements OnInit {
     }).catch(function(err) {
         loginStatus = err.code;
     });
-    console.log(loginStatus);
     switch (loginStatus) {
         case 'auth/invalid-email':
             message = 'E-mail inválido';

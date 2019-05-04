@@ -31,17 +31,13 @@ export class AuthenticationService {
   checkToken() {
     return this.storage.get(TOKEN_KEY).then(async res => {
       let bool: boolean;
-      console.log(res);
       if (res) {
           // Login
           await this.LoginWithStorageData(res.email, res.password)
           .then(function(reso) {
-              console.log('login com info do storage feito com sucesso');
-              console.log(reso);
               bool = true;
               // this.authenticationState.next(true);
           }).catch(function(err) {
-              console.log(err);
               bool = false;
           });
       }
@@ -54,10 +50,8 @@ export class AuthenticationService {
       return await new Promise(async function(resolve, reject) {
           const loginResult =  await aux.signInWithEmailAndPassword(email, password)
         .then(function (res) {
-            console.log('simple login sucessfully', res);
             resolve(res);
         }).catch(function (err) {
-            console.log('ops', err);
             reject(err);
         });
       });
@@ -74,10 +68,7 @@ export class AuthenticationService {
     return await new Promise(async function (resolve, reject) {
       const loginResult = await authAux.signInWithEmailAndPassword(user.email, user.password)
       .then(async function(res) {
-          console.log(res);
-          console.log(res.user.uid);
           if ( res.user.emailVerified === false) {
-                console.log('alo');
                 const auxObj = {
                     message: '',
                     code: 'user-email-not-verified'
@@ -90,7 +81,6 @@ export class AuthenticationService {
             };
             storageAux.set(TOKEN_KEY, auxObj2).then((r) => {
                 authState.next(true);
-                console.log('email e senha adicionada ao storage');
             });
             resolve(res);
           }
@@ -101,7 +91,6 @@ export class AuthenticationService {
   }
 
   async Logout() {
-    console.log('alo 2');
     const authAux = this.authService.auth;
     const storageAux = this.storage;
     const authState = this.authenticationState;
@@ -110,8 +99,8 @@ export class AuthenticationService {
         .then(function() {
           storageAux.remove(TOKEN_KEY).then(() => {
             authState.next(false);
-            console.log('usuario e senha removida do storage');
-          }).catch(function(err) { console.log(err); });
+          }).catch(function(err) { 
+          });
           resolve('user-signedOut');
         }).catch(function(err) {
           reject(err);

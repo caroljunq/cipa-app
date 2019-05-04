@@ -48,11 +48,9 @@ export class AppComponent implements OnInit {
     private router: Router,
   ) {
     this.initializeApp();
-    console.log('akjsajskas');
   }
 
   ngOnInit() {
-    console.log('hello');
   }
 
   initializeApp() {
@@ -61,12 +59,12 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
 
       this.authService.authenticationState.subscribe(state => {
-          console.log(`estado do usuario ${state}`);
           //this.authentication = state;
           if (state) {
               this.router.navigate(['home']);
               this.currentUser = this.authService.UserInfo()
               console.log(this.currentUser);
+
 
           } else {
               this.router.navigate(['login']);
@@ -83,6 +81,7 @@ export class AppComponent implements OnInit {
         router.navigateByUrl('/login');
       }).catch(function(err) {
         console.log(err);
+
       });
   }
 }
