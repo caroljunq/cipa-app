@@ -1,3 +1,5 @@
+
+
 <ion-content>
   <ion-row class="header-home">
     <ion-col size="2">
@@ -10,7 +12,7 @@
       <!--     <ion-img class="fake-icon" src="assets/imgs/blank.png"></ion-img>  -->
     </ion-col>
   </ion-row>
-  <ion-grid class="home-grid">
+  <ion-grid class="home-grid" *ngIf="!firstAccess">
     <ion-row>
       <ion-button class="btnHomePage" [routerLink]="'/definition'" [routerDirection]="'forward'" expand="full"> Definição </ion-button>
     </ion-row>
@@ -21,4 +23,12 @@
       <ion-button class="btnHomePage" (click)="navigateCategory('intervencoes')" expand="full"> Consultar Intervenções </ion-button>
     </ion-row>
   </ion-grid>
+  <ion-row class="defBlock" *ngIf="firstAccess" justify-content-center>        
+      <p>Este aplicativo tem o intuito de facilitar o uso dos diagnósticos e intervenções de enfermagem
+      para o enfrentamento da violência doméstica contra criança.</p>
+      <ion-button class="step-access" fill="clear" size="default" (click)="startApp()">
+          <span>COMEÇAR</span>
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+  </ion-row>
 </ion-content>

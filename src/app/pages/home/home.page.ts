@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 // import { Router } from '@angular/router';
 import { NavController, MenuController } from '@ionic/angular';
 import { ContentService } from '../../services/content/content.service';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-home',
@@ -10,11 +12,22 @@ import { ContentService } from '../../services/content/content.service';
 })
 export class HomePage implements OnInit {
 
+  firstAccess: boolean = true;
+
   constructor(
     private menuCtrl: MenuController,
     private navCtrl: NavController,
     private contentService: ContentService,
-  ) { }
+    private storage: Storage
+  ) {
+    this.storage.get('firstAccess').then((val) => {
+      if(val == null || val){
+        this.firstAccess = true;
+      }else{
+        this.firstAccess = false;
+      }
+    });
+  }
 
   ngOnInit() {
     this.menuCtrl.enable(true);
@@ -27,6 +40,11 @@ export class HomePage implements OnInit {
   navigateCategory(category){
     this.contentService.setCategory(category);
     this.navCtrl.navigateForward('/select-group');
+  }
+
+  startApp(){
+    this.firstAccess = false;
+    this.storage.set('firstAccess', false);
   }
   
 }
