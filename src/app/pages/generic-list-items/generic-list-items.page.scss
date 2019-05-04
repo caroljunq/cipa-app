@@ -42,3 +42,20 @@ ion-select{
 .title-less{
   font-weight: 500;
 }
+
+.header-panel-favorite, .mat-panel-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-panel-body{
+  justify-content: end !important;
+}
+
+.favorite-button{
+  font-size: 3rem;
+  margin-right: 7px;
+}
+
+

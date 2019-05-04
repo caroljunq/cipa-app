@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NavController } from '@ionic/angular';
 import { AuthenticationService } from './services/firebase/authentication.service';
 import { Router } from '@angular/router';
-import { AngularFirestore } from 'angularfire2/firestore';
-
 
 @Component({
   selector: 'app-root',
@@ -47,10 +44,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private navCtrl: NavController,
     private authService: AuthenticationService,
     private router: Router,
-    private db: AngularFirestore
   ) {
     this.initializeApp();
     console.log('akjsajskas');
@@ -70,8 +65,9 @@ export class AppComponent implements OnInit {
           //this.authentication = state;
           if (state) {
               this.router.navigate(['home']);
-              this.currentUser = this.authService.UserInfo();
+              this.currentUser = this.authService.UserInfo()
               console.log(this.currentUser);
+
           } else {
               this.router.navigate(['login']);
           }
@@ -80,13 +76,13 @@ export class AppComponent implements OnInit {
   }
 
   SignOut() {
-      const router = this.router;
-      this.authService.Logout()
+    const router = this.router;
+    this.authService.Logout()
       .then(function(res) {
-          console.log(res);
-          router.navigateByUrl('/login');
+        console.log(res);
+        router.navigateByUrl('/login');
       }).catch(function(err) {
-          console.log(err);
+        console.log(err);
       });
   }
 }
