@@ -17,7 +17,7 @@
     <ion-item>
       <ion-label>Categoria</ion-label>
       <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="renderContent.type">
-        <ion-select-option *ngFor="let value of this.select_type_values; let i = index" value="{{ value }}">{{ value }}</ion-select-option>
+        <ion-select-option *ngFor="let value of this.select_type_values; let i = index" value="{{ value }}"><span class="select-option">{{ value }}</span></ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -37,7 +37,7 @@
             <ion-row>
                 <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
                 <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>            </ion-row>
-            <span>{{ item.text }}</span>
+            <span class="card-msg">{{ item.text }}</span>
           </section>
         </mat-expansion-panel>
       </ion-row>
@@ -46,7 +46,8 @@
            <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
               <mat-panel-title class="header-panel-favorite">
                   <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
-                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>                 <div class="truncate">
+                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>                 
+                  <div class="truncate">
                    {{ item.text }}
                  </div>
               </mat-panel-title>
@@ -56,7 +57,7 @@
                 <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
                 <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>
              </ion-row>
-              <span>{{ item.text }}</span>
+              <span class="card-msg">{{ item.text }}</span>
             </section>
         </mat-expansion-panel>
       </ion-row>

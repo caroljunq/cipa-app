@@ -7,9 +7,14 @@
 mat-expansion-panel{
   width: 100%;
   margin-top: 20px;
-  background-color: #41DB79;
+  background-color: #87bcdc !important;
 }
 
+mat-expansion-panel-header {
+  background-color: #87bcdc !important;
+}
+
+// #87bcdc
 ion-row {
   display: flex;
   justify-content: center;
@@ -56,6 +61,11 @@ ion-select{
 .favorite-button{
   font-size: 3rem;
   margin-right: 7px;
+  color: #1c5577;
 }
 
+.truncate, .card-msg{
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
 
