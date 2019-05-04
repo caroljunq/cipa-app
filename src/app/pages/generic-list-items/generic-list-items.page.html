@@ -23,13 +23,30 @@
   </ion-list>
    <ion-searchbar [(ngModel)]="terms" placeholder="Procurar"></ion-searchbar>
    <ion-grid>
-     <ion-row *ngFor="let item of renderContent.data | search : terms">
+      <ion-row *ngFor="let item of favoriteItems | search : terms">
         <mat-expansion-panel *ngIf="renderContent.type == item.type">
+          <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
+            <mat-panel-title class="header-panel-favorite">
+                <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
+                <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>              <div class="truncate">
+                {{ item.text }}
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="mat-panel-body">
+            <ion-row>
+                <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
+                <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>            </ion-row>
+            <span>{{ item.text }}</span>
+          </section>
+        </mat-expansion-panel>
+      </ion-row>
+      <ion-row *ngFor="let item of renderContent.data | search : terms">
+        <mat-expansion-panel *ngIf="renderContent.type == item.type && !favorites.includes(item.id)">
            <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
               <mat-panel-title class="header-panel-favorite">
-                <ion-icon class="favorite-button" (click)="addFavoriteCard($event, item.id)" name="star-outline" *ngIf="!favorites.includes(item.id)"></ion-icon>
-                <ion-icon class="favorite-button" (click)="removeFavoriteCard($event, item.id)" name="star" *ngIf="favorites.includes(item.id)"></ion-icon>
-                 <div class="truncate">
+                  <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
+                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>                 <div class="truncate">
                    {{ item.text }}
                  </div>
               </mat-panel-title>
@@ -42,6 +59,6 @@
               <span>{{ item.text }}</span>
             </section>
         </mat-expansion-panel>
-     </ion-row>
+      </ion-row>
    </ion-grid>
 </ion-content>

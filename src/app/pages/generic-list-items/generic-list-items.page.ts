@@ -14,6 +14,7 @@ export class GenericListItemsPage implements OnInit {
   select_type_values = ['fortalecimento','desgastes'];
 
   favorites = [];
+  favoriteItems = [];
 
   renderContent: any = {
     type: 'fortalecimento',
@@ -55,6 +56,7 @@ export class GenericListItemsPage implements OnInit {
           if(user.favorites){
             this.favorites = user.favorites
             this.storage.set('favorites', user.favorites);
+            this.favoriteItems = this.getFavoriteItems();
           }else{
             this.getLocalStorageFavorites();
           }
@@ -70,6 +72,7 @@ export class GenericListItemsPage implements OnInit {
     let localFavorites = this.storage.get('favorites').then((arr) => {
       if(arr){
         this.favorites = arr;
+        this.favoriteItems = this.getFavoriteItems();
       }
     })
   }
@@ -80,6 +83,7 @@ export class GenericListItemsPage implements OnInit {
     this.favorites.push(id);
     this.userDataService.updateUserFavorites(this.favorites)
     this.storage.set('favorites', this.favorites);
+    this.favoriteItems = this.getFavoriteItems();
   }
 
   removeFavoriteCard(event: Event, id: number){
@@ -91,7 +95,13 @@ export class GenericListItemsPage implements OnInit {
       this.favorites.splice(position, 1);
       this.userDataService.updateUserFavorites(this.favorites);
       this.storage.set('favorites', this.favorites);
+      this.favoriteItems = this.getFavoriteItems();
     }
   }
 
+  getFavoriteItems(){
+    return this.renderContent.data.filter(el =>{
+      return this.favorites.includes(el.id)
+    })
+  }
 }
