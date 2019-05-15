@@ -176,7 +176,7 @@ export class CreateAccountPage implements OnInit {
   async presentAlertConfirm( ) {
     const alert = await this.alertController.create({
       header: 'Termos de Uso',
-      message: 'Seus dados de cadastro serão utilizados para analisarmos o perfil dos usuários deste aplicativo e propor melhorias de acesso e navegação para os desenvolvedores. Você aceita?',
+      message: 'Seus dados de cadastro e o conteúdo que você disponibilizará neste aplicativo será utilizado para analisar o perfil de utilização do mesmo e propor melhorias de acesso e navegação aos desenvolvedores. Sugerimos utilizar nomes fictícios ou somente as iniciais dos nomes ao cadastrar os atendimentos.Você aceita?',
       buttons: [
         {
           text: 'Não aceito',
