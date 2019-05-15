@@ -10,18 +10,18 @@
       </ion-row>
     </ion-grid>
     <ion-grid class="formNewCase">
-      <ion-input placeholder="Identificação"></ion-input>
+      <ion-input placeholder="Identificação" [(ngModel)]="id" ></ion-input>
       <ion-datetime 
       displayFormat="DD MM YYYY" 
       value="2000-01-01"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
-      placeholder="Data de Nascimento"></ion-datetime>
-      <ion-select placeholder="Sexo">
+      placeholder="Data de Nascimento" [(ngModel)]="data"></ion-datetime>
+      <ion-select placeholder="Sexo" [(ngModel)]="sex">
         <ion-select-option value="f"> Feminino </ion-select-option>
         <ion-select-option value="m"> Masculino </ion-select-option>
       </ion-select>
-      <ion-textarea placeholder="Anotações"></ion-textarea>
-      <ion-button> Selecionar Diagnosticos </ion-button>
+      <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
+      <ion-button expand="full" (click)="CreateNewCase()" > Selecionar Diagnosticos </ion-button>
     </ion-grid>
 
 </ion-content>

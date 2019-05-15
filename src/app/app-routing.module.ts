@@ -75,11 +75,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: './pages/select-group/select-group.module#SelectGroupPageModule'
   },
-  // {
-  //   path: 'new-case',
-  //   canActivate: [AuthGuardService],
-  //   loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
-  // },
+  {
+     path: 'new-case',
+     canActivate: [AuthGuardService],
+     loadChildren: './pages/new-case/new-case.module#NewCasePageModule' 
+  },
   { 
     path: 'change-password', 
     canActivate: [AuthGuardService],
