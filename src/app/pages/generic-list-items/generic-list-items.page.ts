@@ -50,7 +50,7 @@ export class GenericListItemsPage implements OnInit {
     this.renderContent.type = 'fortalecimento';
 
     //retrieve data from db
-    this.userDataService.getUserFavorites()
+    this.userDataService.getUserInfo()
       .subscribe(
         (user: UserInfo) => {
           // se há o campo favorites
