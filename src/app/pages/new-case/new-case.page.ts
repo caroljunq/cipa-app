@@ -64,7 +64,7 @@ export class NewCasePage implements OnInit {
           role: 'cancel',
           cssClass: 'danger',
           handler: () => {
-            this.navCtrl.navigateForward('/home');
+            this.navCtrl.navigateForward('/cases');
           }
         },      
       ]
@@ -73,6 +73,7 @@ export class NewCasePage implements OnInit {
   }
 
   createNewCase(){
+    let curDate = new Date();
     if(this.id && this.notes){
       let createdAt = this.date.valueOf()
       let x = this.userDataService.addCase({
@@ -81,7 +82,7 @@ export class NewCasePage implements OnInit {
         dob: createdAt.split('-').join('/'),
         notes: this.notes,
         favorites: [],
-        created: new Date()
+        created: `${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
       })
         .then((res) => {
           this.presentAlertSuccess('Atendimento criado.','Sucesso')

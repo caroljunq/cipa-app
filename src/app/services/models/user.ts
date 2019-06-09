@@ -26,5 +26,5 @@ export interface UserInfo {
     pastXpClass?: string;
     otherPastXpClass?: string;
     favorites?: Array<number>
-    cases?: Object;
+    cases?: Object
 }

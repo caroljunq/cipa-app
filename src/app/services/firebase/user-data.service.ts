@@ -33,7 +33,9 @@ export class UserDataService {
     const id = newCase.id +'_'+dob.getTime();
     // adding new
     const docRef = this.db.collection('users').doc(this.userInfo.email);
-    
+
+    newCase.dob = `${dob.getDate()}/${dob.getMonth()}/${dob.getFullYear()}`
+
     let obj = {};
     obj['cases.'+ id] = newCase;
 
