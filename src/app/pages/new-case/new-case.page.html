@@ -15,13 +15,12 @@
       displayFormat="DD MM YYYY" 
       value="2000-01-01"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
-      placeholder="Data de Nascimento" [(ngModel)]="data"></ion-datetime>
-      <ion-select placeholder="Sexo" [(ngModel)]="sex">
+      placeholder="Data de Nascimento" [(ngModel)]="date"></ion-datetime>
+      <ion-select placeholder="Sexo" [(ngModel)]="gender">
         <ion-select-option value="f"> Feminino </ion-select-option>
         <ion-select-option value="m"> Masculino </ion-select-option>
       </ion-select>
       <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
-      <ion-button expand="full" (click)="CreateNewCase()" > Selecionar Diagnosticos </ion-button>
+      <ion-button expand="full" (click)="createNewCase()" style="width:100%"> Criar Atendimento </ion-button>
     </ion-grid>
-
 </ion-content>

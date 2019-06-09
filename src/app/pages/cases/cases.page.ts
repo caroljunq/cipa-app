@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-cases',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CasesPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
+
+  }
+
+  createCase(){
+    this.navCtrl.navigateForward('/new-case');
   }
 
 }
