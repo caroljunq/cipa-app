@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { UserDataService } from '../../services/firebase/user-data.service';
+import { ContentService } from '../../services/content/content.service';
 import { UserInfo } from './../../services/models/user';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cases',
@@ -17,7 +17,7 @@ export class CasesPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private userDataService: UserDataService,
-    private router: Router,
+    private contentService: ContentService
   ) { }
 
   ngOnInit() {
@@ -25,8 +25,10 @@ export class CasesPage implements OnInit {
     this.userDataService.getUserInfo()
       .subscribe(
         (user: UserInfo) => {
-          this.cases_id = Object.keys(user.cases);
-          this.cases = user.cases;
+          if(user.cases){
+            this.cases_id = Object.keys(user.cases);
+            this.cases = user.cases;
+          }
         },
         (err) => {
           // pegar algum dado do localstorage?
@@ -40,8 +42,7 @@ export class CasesPage implements OnInit {
   }
 
   editCase(case_id){
-    // this.router.navigateByUrl('/new-case');
-    this.router.navigate(['/new-case', { id: 11 }]);
+    this.contentService.setRenderCase(this.cases[case_id],case_id);
+    this.navCtrl.navigateForward('/new-case');
   }
-
 }

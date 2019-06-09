@@ -3,7 +3,8 @@
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
-      <ion-title>Novo Atendimento</ion-title>
+      <ion-title *ngIf="!editing">Novo Atendimento</ion-title>
+      <ion-title *ngIf="editing">Editando Atendimento</ion-title>
     </ion-toolbar>
   </ion-header>
 <ion-content>
@@ -13,12 +14,13 @@
       displayFormat="DD MM YYYY" 
       value="2000-01-01"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
-      placeholder="Data de Nascimento" [(ngModel)]="date"></ion-datetime>
+      placeholder="Data de Nascimento" [(ngModel)]="dob"></ion-datetime>
     <ion-select placeholder="Sexo" [(ngModel)]="gender">
       <ion-select-option value="Feminino"> Feminino </ion-select-option>
       <ion-select-option value="Masculino"> Masculino </ion-select-option>
     </ion-select>
     <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
-    <ion-button expand="full" (click)="createNewCase()" style="width:100%"> Criar Atendimento </ion-button>
+    <ion-button expand="full" (click)="createNewCase()" style="width:100%" *ngIf="!editing"> Criar Atendimento </ion-button>
+    <ion-button expand="full" (click)="saveCaseChanges()" style="width:100%" *ngIf="editing"> Salvar Alterações </ion-button>
   </ion-grid>
 </ion-content>

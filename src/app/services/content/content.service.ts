@@ -13,6 +13,7 @@ export class ContentService {
     category: '',
     data: [],
     case: {
+      db_id: '',
       id: '',
       gender: 'Feminino',
       dob: '',
@@ -60,8 +61,9 @@ export class ContentService {
     return this.renderContent;
   }
 
-  setRenderCase(curCase){
+  setRenderCase(curCase,case_id){
     this.renderContent.case = curCase;
+    this.renderContent.case.db_id = case_id;
   }
 
   resetRenderContent(){
@@ -71,6 +73,7 @@ export class ContentService {
       category: '',
       data: [],
       case: {
+        db_id: '',
         id: '',
         gender: 'Feminino',
         dob: '',

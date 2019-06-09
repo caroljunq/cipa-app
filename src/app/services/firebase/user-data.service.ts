@@ -3,6 +3,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AuthenticationService } from 'src/app/services/firebase/authentication.service';
 import { resolve } from 'url';
 // import { UserInfo } from './../../services/models/user';
+import * as firebase from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +31,12 @@ export class UserDataService {
   }
 
   addCase(newCase){
-    const dob = new Date(newCase.dob);
+    const dob = new Date(newCase.dob.replace('/'));
     const id = newCase.id +'_'+dob.getTime();
     // adding new
     const docRef = this.db.collection('users').doc(this.userInfo.email);
 
-    newCase.dob = `${dob.getDate()}/${dob.getMonth()}/${dob.getFullYear()}`
+    newCase.dob = `${dob.getDate() + 1}/${dob.getMonth() + 1}/${dob.getFullYear()}`
 
     let obj = {};
     obj['cases.'+ id] = newCase;
@@ -46,7 +48,7 @@ export class UserDataService {
       let wait = setTimeout(() => {
         clearTimeout(wait);
         reject(false);
-      }, 1200)
+      }, 700)
     })
 
     let promiseFirestore = new Promise((resolve, reject) => {
@@ -61,14 +63,42 @@ export class UserDataService {
     ])
   }
 
-  //pega o id de todos os atendimentos do usuario
-  // getUserPatients(){
+  async editCase(newData,case_id){
+    try{
+      let deleteAction = await this.deleteCase(case_id);
+      let addAction = await this.addCase(newData); 
+      console.log(deleteAction);
+      console.log(addAction);
+      return true;
+    }catch(error){
+      console.log("ERORRRRRR");
+      return false;
+    }  
+  }
 
-  // }
+  deleteCase(case_id){
 
-  // //pega os favoritados daquele atendimento
-  // getPatientFavorites(patient){
+    const docRef = this.db.collection('users').doc(this.userInfo.email);
 
-  // }
-  
+    let promiseTimeout = new Promise((resolve, reject) => {
+      let wait = setTimeout(() => {
+        clearTimeout(wait);
+        reject(false);
+      }, 700)
+    })
+
+    let promiseFirestore = new Promise((resolve, reject) => {
+
+      docRef.update({
+        ['cases.' + case_id]: firebase.firestore.FieldValue.delete()
+      })
+        .then((res)=>{resolve(true)})
+        .catch((err) => {reject(false);})
+    })
+
+    return Promise.race([
+      promiseFirestore,
+      promiseTimeout 
+    ])
+  }
 }
