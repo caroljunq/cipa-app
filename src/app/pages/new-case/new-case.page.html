@@ -1,26 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Novo Atendimento</ion-title>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
-    <ion-grid class="grid">
-      <ion-row class="newCaseHeader">
-        <ion-col size="1">
-          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
-        </ion-col>
-        <ion-col size="11">
-          <p class="title"> Novo Atendimento  </p>
-        </ion-col> 
-      </ion-row>
-    </ion-grid>
-    <ion-grid class="formNewCase">
-      <ion-input placeholder="Identificação" [(ngModel)]="id" ></ion-input>
-      <ion-datetime 
+  <ion-grid class="formNewCase">
+    <ion-input placeholder="Identificação" [(ngModel)]="id" ></ion-input>
+    <ion-datetime 
       displayFormat="DD MM YYYY" 
       value="2000-01-01"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
       placeholder="Data de Nascimento" [(ngModel)]="date"></ion-datetime>
-      <ion-select placeholder="Sexo" [(ngModel)]="gender">
-        <ion-select-option value="f"> Feminino </ion-select-option>
-        <ion-select-option value="m"> Masculino </ion-select-option>
-      </ion-select>
-      <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
-      <ion-button expand="full" (click)="createNewCase()" style="width:100%"> Criar Atendimento </ion-button>
-    </ion-grid>
+    <ion-select placeholder="Sexo" [(ngModel)]="gender">
+      <ion-select-option value="Feminino"> Feminino </ion-select-option>
+      <ion-select-option value="Masculino"> Masculino </ion-select-option>
+    </ion-select>
+    <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
+    <ion-button expand="full" (click)="createNewCase()" style="width:100%"> Criar Atendimento </ion-button>
+  </ion-grid>
 </ion-content>

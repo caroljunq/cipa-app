@@ -8,29 +8,24 @@
 </ion-header>
 <ion-content>
   <ion-grid>
-    <ion-row *ngFor="let case_id of cases_id" >
-      {{ cases[case_id].id }}
-      {{ cases[case_id].dob }}
-      {{ cases[case_id].created }}
+    <ion-row justify-content-center>
+      <ion-button class="create-case" (click)="createCase()" expand="full"> Criar novo atendimento </ion-button>
     </ion-row>
+    <ion-card class="case-item" *ngFor="let case_id of cases_id">
+      <ion-card-header>
+        <ion-card-title>{{ cases[case_id].id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content (click)="editCase(case_id)">
+        <span class="case-notes">{{ cases[case_id].notes }}</span>
+        <ion-row class="line-edit">
+          <span class="case-created col-md-9">Criado em {{ cases[case_id].created }}</span>
+          <ion-icon class="col-md-3" name="create"></ion-icon>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
   </ion-grid>
-        <!-- <ion-row *ngFor="let item of favoriteItems | search : terms">
-          <mat-expansion-panel *ngIf="renderContent.type == item.type">
-            <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
-              <mat-panel-title class="header-panel-favorite">
-                  <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
-                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>              <div class="truncate">
-                  {{ item.text }}
-                </div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <section class="mat-panel-body">
-              <ion-row>
-                  <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favorites.includes(item.id)"></ion-icon>
-                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favorites.includes(item.id)"></ion-icon>            </ion-row>
-              <span class="card-msg">{{ item.text }}</span>
-            </section>
-          </mat-expansion-panel>
-        </ion-row> -->
-  <ion-button (click)="createCase()" expand="full"> Criar atendimento </ion-button>
 </ion-content>
+
+<!-- /<ion-icon name="create"></ion-icon> -->
+<!-- <ion-icon name="create"></ion-icon> -->
+

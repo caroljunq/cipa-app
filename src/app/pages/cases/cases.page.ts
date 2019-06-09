@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { UserDataService } from '../../services/firebase/user-data.service';
 import { UserInfo } from './../../services/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cases',
@@ -16,6 +17,7 @@ export class CasesPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private userDataService: UserDataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -27,8 +29,7 @@ export class CasesPage implements OnInit {
           this.cases = user.cases;
         },
         (err) => {
-          //pega valor do local storage
-          // this.getLocalStorageFavorites();
+          // pegar algum dado do localstorage?
         },
         () => {}
       )
@@ -36,6 +37,11 @@ export class CasesPage implements OnInit {
 
   createCase(){
     this.navCtrl.navigateForward('/new-case');
+  }
+
+  editCase(case_id){
+    // this.router.navigateByUrl('/new-case');
+    this.router.navigate(['/new-case', { id: 11 }]);
   }
 
 }

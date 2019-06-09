@@ -3,7 +3,6 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { UserDataService } from '../../services/firebase/user-data.service';
 import { NavController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-new-case',
   templateUrl: './new-case.page.html',
@@ -13,14 +12,14 @@ export class NewCasePage implements OnInit {
 
   id: string; 
   date: string = '2000-01-01';
-  gender: string = 'f';
+  gender: string = 'Feminino';
   notes: string;
 
   constructor(
     public toastController: ToastController,
     private userDataService: UserDataService,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
   ) { }
 
   ngOnInit() {

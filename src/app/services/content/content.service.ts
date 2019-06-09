@@ -11,7 +11,15 @@ export class ContentService {
     type: 'fortalecimento',
     group: '',
     category: '',
-    data: []
+    data: [],
+    case: {
+      id: '',
+      gender: 'Feminino',
+      dob: '',
+      notes: '',
+      created: '',
+      favorites: []
+    },
   };
 
   constructor() {}
@@ -50,5 +58,26 @@ export class ContentService {
 
   getRenderContent(){
     return this.renderContent;
+  }
+
+  setRenderCase(curCase){
+    this.renderContent.case = curCase;
+  }
+
+  resetRenderContent(){
+    this.renderContent = {
+      type: 'fortalecimento',
+      group: '',
+      category: '',
+      data: [],
+      case: {
+        id: '',
+        gender: 'Feminino',
+        dob: '',
+        notes: '',
+        created: '',
+        favorites: []
+      },
+    };
   }
 }
