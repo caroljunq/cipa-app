@@ -8,18 +8,21 @@
     </ion-toolbar>
   </ion-header>
 <ion-content>
+  <ion-icon class="trash-case" name="trash" (click)="callDeleteCase()" *ngIf="editing"></ion-icon>
+  <ion-grid class="line-editing" *ngIf="editing">
+    <ion-button expand="full" (click)="useCase()" class="use-case" > Utilizar atendimento </ion-button>
+  </ion-grid>
   <ion-grid class="formNewCase">
-    <ion-input placeholder="Identificação" [(ngModel)]="id" ></ion-input>
+    <ion-input placeholder="Identificação" [(ngModel)]="case.id" [pattern]="'^[a-zA-Z \-\']$'"></ion-input>
     <ion-datetime 
-      displayFormat="DD MM YYYY" 
-      value="2000-01-01"
+      displayFormat="DD MM YYYY"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
-      placeholder="Data de Nascimento" [(ngModel)]="dob"></ion-datetime>
-    <ion-select placeholder="Sexo" [(ngModel)]="gender">
+      placeholder="Data de Nascimento" [(ngModel)]="case.dob"></ion-datetime>
+    <ion-select placeholder="Sexo" [(ngModel)]="case.gender">
       <ion-select-option value="Feminino"> Feminino </ion-select-option>
       <ion-select-option value="Masculino"> Masculino </ion-select-option>
     </ion-select>
-    <ion-textarea placeholder="Anotações" [(ngModel)]="notes"></ion-textarea>
+    <ion-textarea placeholder="Anotações" [(ngModel)]="case.notes"></ion-textarea>
     <ion-button expand="full" (click)="createNewCase()" style="width:100%" *ngIf="!editing"> Criar Atendimento </ion-button>
     <ion-button expand="full" (click)="saveCaseChanges()" style="width:100%" *ngIf="editing"> Salvar Alterações </ion-button>
   </ion-grid>

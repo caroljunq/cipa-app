@@ -42,3 +42,23 @@
         float: right;
     }
 }
+
+.trash-case{
+    width: 2rem;
+    height: 2.2rem;
+    position: absolute;
+    right: 0;
+    color: #504d4d;
+    margin: 5px;
+}
+
+.use-case{
+    margin-top: 3rem;
+    margin-bottom: -2.3rem;
+}
+
+.line-editing{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}

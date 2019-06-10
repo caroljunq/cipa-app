@@ -42,7 +42,7 @@ export class CasesPage implements OnInit {
   }
 
   editCase(case_id){
-    this.contentService.setRenderCase(this.cases[case_id],case_id);
+    this.contentService.setRenderCase(this.cases[case_id]);
     this.navCtrl.navigateForward('/new-case');
   }
 }

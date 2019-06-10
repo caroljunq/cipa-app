@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, AlertController } from '@ionic/angular';
 import { UserDataService } from '../../services/firebase/user-data.service';
 import { ContentService } from '../../services/content/content.service';
-
 import { NavController } from '@ionic/angular';
+import { Case } from './../../services/models/case';
 
 @Component({
   selector: 'app-new-case',
@@ -12,14 +12,17 @@ import { NavController } from '@ionic/angular';
 })
 export class NewCasePage implements OnInit {
 
-  id: string; 
-  dob: string = '2000-01-01';
-  gender: string = 'Feminino';
-  notes: string;
+  case: Case = {
+    db_id: '',
+    id: '',
+    gender: '',
+    dob: '',
+    notes: '',
+    created: '',
+    favorites: []
+  }
+  
   editing: boolean = false;
-  favorites: any = [];
-  db_id: string = '';
-  created: string = '';
 
   constructor(
     public toastController: ToastController,
@@ -32,15 +35,11 @@ export class NewCasePage implements OnInit {
   ngOnInit() {
     let renderObj = this.contentService.getRenderContent();
     
-    if(renderObj.case.id != ''){
+    if(renderObj.case.id != '' && renderObj.case.db_id != ''){
       this.editing = true;
-      this.id = renderObj.case.id;
-      this.gender = renderObj.case.gender;
-      this.notes = renderObj.case.notes;
+      this.case = renderObj.case;
+
       let dob = renderObj.case.dob.split('/');
-      this.favorites = renderObj.case.favorites;
-      this.db_id = renderObj.case.db_id;
-      this.created = renderObj.case.created;
 
       // add 0 left number
       if(dob[1].length == 1){
@@ -51,11 +50,9 @@ export class NewCasePage implements OnInit {
       if(dob[0].length == 1){
         dob[0] = '0' + dob[0]; 
       }
-
-      this.dob = `${dob[2]}-${dob[1]}-${dob[0]}`
-      this.contentService.resetRenderContent();
+      this.case.dob = `${dob[2]}-${dob[1]}-${dob[0]}`
     }
-
+    this.contentService.resetRenderContent(); 
     this.PresentToast('Sugerimos utilizar nomes fictícios ou somente as iniciais dos nomes ao cadastrar os atendimentos',6000);
   }
   
@@ -105,43 +102,101 @@ export class NewCasePage implements OnInit {
     alert.present();
   }
 
+  async presentAlertDelete(message,title){
+    const alert = await this.alertController.create({
+      header: title,
+      message: message,
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            console.log("")
+          }
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.deleteCase();
+          }
+        }      
+      ]
+    });
+    alert.present();
+  }
+
   createNewCase(){
     let curDate = new Date();
-    if(this.id && this.notes){
-      let x = this.userDataService.addCase({
-        id: this.id,
-        gender: this.gender,
-        dob: this.dob.valueOf(),
-        notes: this.notes,
-        favorites: [],
-        created: `${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
-      })
-        .then((res) => {
-          this.presentAlertSuccess('Atendimento criado.','Sucesso')
+
+    if(this.case.id && this.case.notes){
+      if(this.validateIdField()){
+        this.userDataService.addCase({
+          id: this.case.id,
+          db_id: this.case.db_id,
+          gender: this.case.gender,
+          dob: this.case.dob.valueOf(),
+          notes: this.case.notes,
+          favorites: this.case.favorites,
+          created: `${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
         })
-        .catch((err) =>{
-          this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
-        })
+          .then((res) => {
+            this.presentAlertSuccess('Atendimento criado.','Sucesso')
+          })
+          .catch((err) =>{
+            this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+          })
+      }else{
+        this.PresentToast('O campo de Identificação deve conter apenas letras ou números.', 2000);
+      }
     }else{
       // algum campo nao preenchido
-      this.PresentToast('Todos os campos devem ser preenchidos.',4000);
-    } 
+      this.PresentToast('Todos os campos devem ser preenchidos.', 3000);
+    }
   }
 
   saveCaseChanges(){
-    const editingCaseSuccess = this.userDataService.editCase({
-      id: this.id,
-      gender: this.gender,
-      dob: this.dob.valueOf(),
-      notes: this.notes,
-      created: this.created,
-      favorites: this.favorites
-    },this.db_id)
+    if(this.validateIdField()){
 
-  if(editingCaseSuccess){
-    this.presentAlertSuccess('Atendimento editado.', 'Sucesso');
-  }else{
-    this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+      const editingCaseSuccess = this.userDataService.editCase({
+        id: this.case.id,
+        db_id: this.case.db_id,
+        gender: this.case.gender,
+        dob: this.case.dob.valueOf(),
+        notes: this.case.notes,
+        created: this.case.created,
+        favorites: this.case.favorites
+      })
+
+      if(editingCaseSuccess){
+        this.presentAlertSuccess('Atendimento editado.', 'Sucesso');
+      }else{
+        this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+      }
+    }else{
+      this.PresentToast('O campo de Identificação deve conter apenas letras e/ou números.', 2000);
+    }
   }
-}
+
+  callDeleteCase(){
+    this.presentAlertDelete('Deseja excluir este atendimento?',"");
+  }
+
+  deleteCase(){
+    this.userDataService.deleteCase(this.case.db_id)
+      .then((res) => {
+        this.presentAlertSuccess('Atendimento excluído.','Sucesso')
+      })
+      .catch((err) =>{
+        this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+      })
+  }
+
+  useCase(){
+    console.log(this.case.db_id)
+  }
+
+  validateIdField(){
+    return /^[A-Za-z0-9? ]+$/.test(this.case.id)
+  }
 }

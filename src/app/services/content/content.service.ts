@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { diagnostics_list } from '../diagnostics-data';
 import { interventions_list } from '../interventions-data';
+import { Case } from './../../services/models/case';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ContentService {
     case: {
       db_id: '',
       id: '',
-      gender: 'Feminino',
+      gender: '',
       dob: '',
       notes: '',
       created: '',
@@ -25,31 +26,31 @@ export class ContentService {
 
   constructor() {}
 
-  setType(type){
+  setType(type: string){
     this.renderContent.type = type;
   }
 
-  setGroup(group){
+  setGroup(group: string){
     this.renderContent.group = group;
   }
 
-  setCategory(category){
+  setCategory(category: string){
     this.renderContent.category = category;
   }
 
-  getSpecificDiagnostics(group){
+  getSpecificDiagnostics(group: string){
     return diagnostics_list.filter( el => {
       return el.group == group;
     })
   }
 
-  getSpecificInterventions(group){
+  getSpecificInterventions(group: string){
     return interventions_list.filter( el => {
       return el.group == group;
     })
   }
 
-  setData(group){
+  setData(group: string){
     if(this.renderContent.category == 'diagnosticos' ){
       this.renderContent.data = this.getSpecificDiagnostics(group)
     } else{
@@ -61,9 +62,8 @@ export class ContentService {
     return this.renderContent;
   }
 
-  setRenderCase(curCase,case_id){
+  setRenderCase(curCase: Case){
     this.renderContent.case = curCase;
-    this.renderContent.case.db_id = case_id;
   }
 
   resetRenderContent(){
@@ -75,7 +75,7 @@ export class ContentService {
       case: {
         db_id: '',
         id: '',
-        gender: 'Feminino',
+        gender: '',
         dob: '',
         notes: '',
         created: '',
