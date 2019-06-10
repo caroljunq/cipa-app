@@ -33,26 +33,13 @@ export class NewCasePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    let renderObj = this.contentService.getRenderContent();
-    
+    let renderObj = this.contentService.getRenderContent(); 
+    this.case = renderObj.case;
+   
     if(renderObj.case.id != '' && renderObj.case.db_id != ''){
       this.editing = true;
-      this.case = renderObj.case;
-
-      let dob = renderObj.case.dob.split('/');
-
-      // add 0 left number
-      if(dob[1].length == 1){
-        dob[1] = '0' + dob[1]; 
-      }
-
-      // add 0 left number
-      if(dob[0].length == 1){
-        dob[0] = '0' + dob[0]; 
-      }
-      this.case.dob = `${dob[2]}-${dob[1]}-${dob[0]}`
     }
-    this.contentService.resetRenderContent(); 
+    
     this.PresentToast('Sugerimos utilizar nomes fictícios ou somente as iniciais dos nomes ao cadastrar os atendimentos',6000);
   }
   
@@ -129,7 +116,7 @@ export class NewCasePage implements OnInit {
   createNewCase(){
     let curDate = new Date();
 
-    if(this.case.id && this.case.notes){
+    if(this.case.id && this.case.notes && this.case.gender && this.case.dob){
       if(this.validateIdField()){
         this.userDataService.addCase({
           id: this.case.id,
@@ -193,6 +180,7 @@ export class NewCasePage implements OnInit {
   }
 
   useCase(){
+    //parei aqui
     console.log(this.case.db_id)
   }
 

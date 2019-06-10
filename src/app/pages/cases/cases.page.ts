@@ -21,6 +21,7 @@ export class CasesPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.contentService.resetRenderContent();
     //retrieve data from db
     this.userDataService.getUserInfo()
       .subscribe(
@@ -38,10 +39,11 @@ export class CasesPage implements OnInit {
   }
 
   createCase(){
+    this.contentService.resetRenderContent();
     this.navCtrl.navigateForward('/new-case');
   }
 
-  editCase(case_id){
+  editCase(case_id: string){
     this.contentService.setRenderCase(this.cases[case_id]);
     this.navCtrl.navigateForward('/new-case');
   }

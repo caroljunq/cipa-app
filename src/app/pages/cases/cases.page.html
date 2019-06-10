@@ -23,6 +23,9 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
+    <section *ngIf="cases_id.length == 0" class="no-data">
+      Não há atendimentos disponíveis ou não há conexão de Internet disponível para obter os dados.
+    </section>
   </ion-grid>
 </ion-content>
 

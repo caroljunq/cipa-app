@@ -29,14 +29,11 @@ export class UserDataService {
   }
 
   addCase(newCase: Case){
-    const dob = new Date(newCase.dob.replace('-','/'));
+    const dob = new Date(newCase.dob);
     const case_id = newCase.id + '_' + dob.getTime();
     const docRef = this.db.collection('users').doc(this.userInfo.email);
 
     newCase.db_id = case_id;
-
-    // adding new
-    newCase.dob = `${dob.getDate()}/${dob.getMonth() + 1}/${dob.getFullYear()}`
 
     // como o firestore nao retorna erro quando está sem internet
     // utilizei promise e race, se o timeout termina primeiro,

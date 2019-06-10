@@ -15,7 +15,7 @@
   <ion-grid class="formNewCase">
     <ion-input placeholder="Identificação" [(ngModel)]="case.id" [pattern]="'^[a-zA-Z \-\']$'"></ion-input>
     <ion-datetime 
-      displayFormat="DD MM YYYY"
+      displayFormat="DD/MM/YYYY"
       monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
       placeholder="Data de Nascimento" [(ngModel)]="case.dob"></ion-datetime>
     <ion-select placeholder="Sexo" [(ngModel)]="case.gender">
