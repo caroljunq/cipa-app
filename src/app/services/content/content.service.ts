@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { diagnostics_list } from '../diagnostics-data';
 import { interventions_list } from '../interventions-data';
 import { Case } from './../../services/models/case';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class ContentService {
     },
   };
 
-  constructor() {}
+  constructor(private storage: Storage) {}
 
   setType(type: string){
     this.renderContent.type = type;
@@ -64,6 +65,14 @@ export class ContentService {
 
   setRenderCase(curCase: Case){
     this.renderContent.case = curCase;
+  }
+
+  setSelectedCase(db_id){
+    return this.storage.set('dbIdCase', db_id);
+  }
+
+  removeSelectedCase(){
+    this.storage.set('dbIdCase', '');
   }
 
   resetRenderContent(){

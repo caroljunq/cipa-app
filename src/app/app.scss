@@ -103,3 +103,48 @@ div.alert-radio-label{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.case-box-right{
+  width: 7rem;
+  height: 3.2rem;
+  position: absolute;
+  right: 1rem;
+  border: 1px solid #1c5577;
+  top: 1rem;
+  display: flex;
+  align-items: flex-end;  
+  justify-content: center;
+  padding: 0.4rem;
+
+  span{
+    color: #756f6f;
+  }
+}
+
+.case-box-left{
+  width: 7rem;
+  height: 3.2rem;
+  position: absolute;
+  right: 1rem;
+  border: 1px solid #1c5577;
+  top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.4rem;
+
+  span{
+    color: #756f6f;
+  }
+}
+
+.case-title{
+  position: absolute;
+  top: 0.2rem;
+  left: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.half-width{
+  width: 60% !important;
+}

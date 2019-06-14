@@ -1,6 +1,10 @@
 
 
 <ion-content>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate">{{ selectedCase.displayName }}</span>
+  </div>
   <ion-row class="header-home">
     <ion-col size="2">
       <ion-img class="fake-icon menu-button" src="assets/imgs/menu.png" (click)="openMenu()"></ion-img>

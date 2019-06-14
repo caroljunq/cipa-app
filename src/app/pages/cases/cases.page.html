@@ -7,9 +7,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate reduce-truncate">{{ selectedCase.displayName }}</span>
+    <ion-icon class="close-case" name="trash" (click)="cleanCase()"></ion-icon>
+  </div>
   <ion-grid>
-    <ion-row justify-content-center>
-      <ion-button class="create-case" (click)="createCase()" expand="full"> Criar novo atendimento </ion-button>
+    <ion-row justify-content-center [ngClass]="{'half-width':selectedCase.displayName != ''}">
+      <ion-button class="create-case" (click)="createCase()" expand="full"> Criar atendimento </ion-button>
     </ion-row>
     <ion-card class="case-item" *ngFor="let case_id of cases_id">
       <ion-card-header>

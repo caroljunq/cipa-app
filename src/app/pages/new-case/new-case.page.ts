@@ -71,7 +71,7 @@ export class NewCasePage implements OnInit {
     alert.present();
   }
 
-  async presentAlertSuccess(message,title){
+  async presentAlertSuccess(message,title,page_route){
     const alert = await this.alertController.create({
       header: title,
       message: message,
@@ -81,7 +81,7 @@ export class NewCasePage implements OnInit {
           role: 'cancel',
           cssClass: 'danger',
           handler: () => {
-            this.navCtrl.navigateForward('/cases');
+            this.navCtrl.navigateForward(page_route);
           }
         },      
       ]
@@ -128,7 +128,7 @@ export class NewCasePage implements OnInit {
           created: `${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
         })
           .then((res) => {
-            this.presentAlertSuccess('Atendimento criado.','Sucesso')
+            this.presentAlertSuccess('Atendimento criado.','Sucesso','/cases')
           })
           .catch((err) =>{
             this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
@@ -156,7 +156,7 @@ export class NewCasePage implements OnInit {
       })
 
       if(editingCaseSuccess){
-        this.presentAlertSuccess('Atendimento editado.', 'Sucesso');
+        this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
       }else{
         this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
       }
@@ -172,7 +172,7 @@ export class NewCasePage implements OnInit {
   deleteCase(){
     this.userDataService.deleteCase(this.case.db_id)
       .then((res) => {
-        this.presentAlertSuccess('Atendimento excluído.','Sucesso')
+        this.presentAlertSuccess('Atendimento excluído.','Sucesso','/cases')
       })
       .catch((err) =>{
         this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
@@ -181,7 +181,13 @@ export class NewCasePage implements OnInit {
 
   useCase(){
     //parei aqui
-    console.log(this.case.db_id)
+    this.contentService.setSelectedCase(this.case.db_id)
+      .then((res) => {
+        this.presentAlertSuccess('Atendimento selecionado.','Sucesso','/home');
+      })
+      .catch((err) =>{
+        this.presentAlertError('Erro ao selecionar atendimento.','Erro');
+      })
   }
 
   validateIdField(){

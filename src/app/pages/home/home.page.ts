@@ -13,7 +13,11 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements OnInit {
 
   firstAccess: boolean = true;
-
+  selectedCase: any = {
+    id: '',
+    displayName: ''
+  };
+  
   constructor(
     private menuCtrl: MenuController,
     private navCtrl: NavController,
@@ -31,6 +35,19 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.menuCtrl.enable(true);
+  }
+
+  ionViewWillEnter(){
+    this.selectedCase = {
+      id: '',
+      displayName: ''
+    };
+    this.storage.get('dbIdCase').then((id) => {
+      if(id != null && id != ''){
+        this.selectedCase.id = id;
+        this.selectedCase.displayName = id.split('_')[0]
+      }
+    })
   }
 
   openMenu() {
