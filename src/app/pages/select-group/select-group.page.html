@@ -1,4 +1,8 @@
 <ion-content>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate">{{ selectedCase.displayName }}</span>
+  </div>
   <ion-grid class="selection-menu">
       <ion-row>
         <ion-col>

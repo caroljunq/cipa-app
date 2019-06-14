@@ -13,6 +13,10 @@
 </ion-header>
 
 <ion-content padding>
+   <ion-row class="case-box-custom" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title-custom">Atendimento</span>
+    <span class="case-name truncate">{{ selectedCase.displayName }}</span>
+   </ion-row>
   <ion-list>
     <ion-item>
       <ion-label>Categoria</ion-label>

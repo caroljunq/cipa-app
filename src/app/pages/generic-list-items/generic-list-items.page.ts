@@ -4,6 +4,7 @@ import { UserDataService } from '../../services/firebase/user-data.service';
 import { UserInfo } from './../../services/models/user';
 import { Storage } from '@ionic/storage';
 
+
 @Component({
   selector: 'app-generic-list-items',
   templateUrl: './generic-list-items.page.html',
@@ -21,6 +22,11 @@ export class GenericListItemsPage implements OnInit {
     category: '',
     group: '',
     data: []
+  };
+
+  selectedCase: any = {
+    id: '',
+    displayName: ''
   };
 
   dictionary = {
@@ -67,6 +73,19 @@ export class GenericListItemsPage implements OnInit {
         },
         () => {}
       )
+  }
+
+  ionViewWillEnter(){
+    this.selectedCase = {
+      id: '',
+      displayName: ''
+    };
+    this.storage.get('dbIdCase').then((id) => {
+      if(id != null && id != ''){
+        this.selectedCase.id = id;
+        this.selectedCase.displayName = id.split('_')[0]
+      }
+    })
   }
 
   getLocalStorageFavorites(){
