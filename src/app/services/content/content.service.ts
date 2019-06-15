@@ -92,20 +92,4 @@ export class ContentService {
       },
     };
   }
-
-  getCaseLocalFavorites(){
-    return this.storage.get('caseFavorites');
-  }
-
-  getGlobalLocalFavorites(){
-    return this.storage.get('globalFavorites');
-  }
-
-  setCaseLocalFavorites(favorites: Array<number>){
-    return this.storage.set('caseFavorites',favorites)
-  }
-
-  setGlobalLocalFavorites(favorites: Array<number>){
-    return this.storage.set('globalFavorites',favorites)
-  }
 }

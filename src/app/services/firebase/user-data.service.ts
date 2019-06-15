@@ -43,63 +43,15 @@ export class UserDataService {
 
     newCase.db_id = case_id;
 
-    // como o firestore nao retorna erro quando está sem internet
-    // utilizei promise e race, se o timeout termina primeiro,
-    // então retorna falso
-    let promiseTimeout = new Promise((resolve, reject) => {
-      let wait = setTimeout(() => {
-        clearTimeout(wait);
-        reject(false);
-      }, 700)
-    })
-
-    let promiseFirestore = new Promise((resolve, reject) => {
-      docRef.update({['cases.'+ case_id]: newCase})
-        .then((res)=>{resolve(true)})
-        .catch((err) => {reject(false);})
-    })
-    
-    return Promise.race([
-      promiseFirestore,
-      promiseTimeout 
-    ])
+    return docRef.update({['cases.'+ case_id]: newCase})
   }
 
   deleteCase(case_id: string){
     this.contentService.removeSelectedCase();
     const docRef = this.db.collection('users').doc(this.userInfo.email);
 
-    let promiseTimeout = new Promise((resolve, reject) => {
-      let wait = setTimeout(() => {
-        clearTimeout(wait);
-        reject(false);
-      }, 700)
+    return docRef.update({
+      ['cases.' + case_id]: firebase.firestore.FieldValue.delete()
     })
-
-    let promiseFirestore = new Promise((resolve, reject) => {
-
-      docRef.update({
-        ['cases.' + case_id]: firebase.firestore.FieldValue.delete()
-      })
-        .then((res)=>{resolve(true)})
-        .catch((err) => {reject(false);})
-    })
-
-    return Promise.race([
-      promiseFirestore,
-      promiseTimeout 
-    ])
   }
-
-  async editCase(newData: Case){
-    try{
-      let deleteAction = await this.deleteCase(newData.db_id);
-      let addAction = await this.addCase(newData); 
-      return true;
-    }catch(error){
-      return false;
-    }  
-  }
-
-  
 }

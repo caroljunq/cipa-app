@@ -56,21 +56,6 @@ export class NewCasePage implements OnInit {
     toast.present();
   }
 
-  async presentAlertError(message, title){
-    const alert = await this.alertController.create({
-      header: title,
-      message: message,
-      buttons: [
-        {
-          text: 'OK',
-          role: 'cancel',
-          cssClass: 'danger'
-        },      
-      ]
-    });
-    alert.present();
-  }
-
   async presentAlertSuccess(message,title,page_route){
     const alert = await this.alertController.create({
       header: title,
@@ -131,7 +116,7 @@ export class NewCasePage implements OnInit {
             this.presentAlertSuccess('Atendimento criado.','Sucesso','/cases')
           })
           .catch((err) =>{
-            this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+            this.PresentToast('Algo deu errado. Tente novamente.',2000)
           })
       }else{
         this.PresentToast('O campo de Identificação deve conter apenas letras ou números.', 2000);
@@ -145,7 +130,7 @@ export class NewCasePage implements OnInit {
   saveCaseChanges(){
     if(this.validateIdField()){
 
-      const editingCaseSuccess = this.userDataService.editCase({
+      this.userDataService.addCase({
         id: this.case.id,
         db_id: this.case.db_id,
         gender: this.case.gender,
@@ -155,11 +140,8 @@ export class NewCasePage implements OnInit {
         favorites: this.case.favorites
       })
 
-      if(editingCaseSuccess){
-        this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
-      }else{
-        this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
-      }
+      this.userDataService.deleteCase(this.case.db_id);
+      this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
     }else{
       this.PresentToast('O campo de Identificação deve conter apenas letras e/ou números.', 2000);
     }
@@ -175,18 +157,17 @@ export class NewCasePage implements OnInit {
         this.presentAlertSuccess('Atendimento excluído.','Sucesso','/cases')
       })
       .catch((err) =>{
-        this.presentAlertError('Algo deu errado. Verifique sua conexão com a Internet.','Erro')
+        this.PresentToast('Algo deu errado. Verifique sua conexão com a Internet.',2000)
       })
   }
 
   useCase(){
-    //parei aqui
     this.contentService.setSelectedCase(this.case.db_id)
       .then((res) => {
         this.presentAlertSuccess('Atendimento selecionado.','Sucesso','/home');
       })
       .catch((err) =>{
-        this.presentAlertError('Erro ao selecionar atendimento.','Erro');
+        this.PresentToast('Erro ao selecionar atendimento.',2000);
       })
   }
 

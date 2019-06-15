@@ -99,6 +99,7 @@ export class GenericListItemsPage implements OnInit {
      this.userDataService.getUserInfo()
       .subscribe(
         (user: UserInfo) => {
+          console.log(user)
           // se há o campo favorites
           // if(user.favorites){
           //   this.favoritesIds = user.favorites
