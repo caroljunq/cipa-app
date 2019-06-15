@@ -16,7 +16,6 @@ export class GenericListItemsPage implements OnInit {
 
   favoritesIds = [];
   favoriteItems = [];
-  caseDbId: string = '';
 
   renderContent: any = {
     type: 'fortalecimento',
@@ -99,16 +98,6 @@ export class GenericListItemsPage implements OnInit {
      this.userDataService.getUserInfo()
       .subscribe(
         (user: UserInfo) => {
-          console.log(user)
-          // se há o campo favorites
-          // if(user.favorites){
-          //   this.favoritesIds = user.favorites
-          //   this.storage.set('favorites', user.favorites);
-          //   this.favoriteItems = this.getFavoriteItems();
-          // }else{
-          //   this.getLocalStorageFavorites();
-          // }
-          
 
           if(this.selectedCase.id != ''){
             if(user.cases[this.selectedCase.id]){
@@ -123,23 +112,11 @@ export class GenericListItemsPage implements OnInit {
           }
         },
         (err) => {
-          //parei aqui - quando pegar do local storage
-          // this.getLocalStorageFavorites();
+          this.presentAlertError('Algo deu errado. Tente novamente.','Erro','/home')
         },
         () => {}
       )
   }
-
-  
-  // getLocalStorageFavorites(){
-  //   let localFavorites = this.storage.get('favorites').then((arr) => {
-  //     if(arr){
-  //       this.favoritesIds = arr;
-  //       this.userDataService.updateUserGlobalFavorites(this.favoritesIds);
-  //       this.favoriteItems = this.getFavoriteItems();
-  //     }
-  //   })
-  // }
 
   addFavoriteCard(event: Event, id: number){
     event.stopPropagation();
@@ -155,24 +132,18 @@ export class GenericListItemsPage implements OnInit {
 
     if(position != -1){
       this.favoritesIds.splice(position, 1);
-      // this.userDataService.updateUserGlobalFavorites(this.favoritesIds);
-      // this.storage.set('favorites', this.favoritesIds);
-      // this.favoriteItems = this.getFavoriteItems();
       this.updateFavoritesCards();
     }
   }
 
   updateFavoritesCards(){
-    if(this.selectedCase.id){
+    if(this.selectedCase.id != ''){
       this.userDataService.updateSelectedCaseFavorites(this.selectedCase.id, this.favoritesIds);
     }else{
       this.userDataService.updateUserGlobalFavorites(this.favoritesIds)
     }
-    // this.storage.set('favorites', this.favoritesIds);
     this.favoriteItems = this.getFavoriteItems();
   }
-
-
 
   getFavoriteItems(){
     return this.renderContent.data.filter(el =>{
