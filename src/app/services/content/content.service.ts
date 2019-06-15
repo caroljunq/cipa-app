@@ -67,7 +67,7 @@ export class ContentService {
     this.renderContent.case = curCase;
   }
 
-  setSelectedCase(db_id){
+  setSelectedCase(db_id: string){
     return this.storage.set('dbIdCase', db_id);
   }
 
@@ -91,5 +91,21 @@ export class ContentService {
         favorites: []
       },
     };
+  }
+
+  getCaseLocalFavorites(){
+    return this.storage.get('caseFavorites');
+  }
+
+  getGlobalLocalFavorites(){
+    return this.storage.get('globalFavorites');
+  }
+
+  setCaseLocalFavorites(favorites: Array<number>){
+    return this.storage.set('caseFavorites',favorites)
+  }
+
+  setGlobalLocalFavorites(favorites: Array<number>){
+    return this.storage.set('globalFavorites',favorites)
   }
 }

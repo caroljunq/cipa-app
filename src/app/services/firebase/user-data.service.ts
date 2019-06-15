@@ -3,6 +3,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AuthenticationService } from 'src/app/services/firebase/authentication.service';
 import * as firebase from 'firebase/app';
 import { Case } from './../../services/models/case';
+import { ContentService } from '../../services/content/content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class UserDataService {
 
   constructor(
     private db: AngularFirestore,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private contentService: ContentService
     ) { 
       this.userInfo = this.authService.UserInfo();
     }
@@ -23,12 +25,18 @@ export class UserDataService {
     return this.db.doc('users/' + this.userInfo.email).valueChanges();
   }
 
-  updateUserFavorites(data: Array<number>){
+  updateUserGlobalFavorites(data: Array<number>){
     const docRef = this.db.collection('users').doc(this.userInfo.email);
     return docRef.update({favorites: data});
   }
 
+  updateSelectedCaseFavorites(db_id,favorites){
+    const docRef = this.db.collection('users').doc(this.userInfo.email);
+    return docRef.update({['cases.'+db_id+'.favorites']: favorites});
+  }
+
   addCase(newCase: Case){
+    this.contentService.removeSelectedCase();
     const dob = new Date(newCase.dob);
     const case_id = newCase.id + '_' + dob.getTime();
     const docRef = this.db.collection('users').doc(this.userInfo.email);
@@ -58,7 +66,7 @@ export class UserDataService {
   }
 
   deleteCase(case_id: string){
-
+    this.contentService.removeSelectedCase();
     const docRef = this.db.collection('users').doc(this.userInfo.email);
 
     let promiseTimeout = new Promise((resolve, reject) => {

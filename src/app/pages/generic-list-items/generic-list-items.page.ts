@@ -3,7 +3,7 @@ import { ContentService } from '../../services/content/content.service';
 import { UserDataService } from '../../services/firebase/user-data.service';
 import { UserInfo } from './../../services/models/user';
 import { Storage } from '@ionic/storage';
-
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-generic-list-items',
@@ -14,8 +14,9 @@ export class GenericListItemsPage implements OnInit {
 
   select_type_values = ['fortalecimento','desgastes'];
 
-  favorites = [];
+  favoritesIds = [];
   favoriteItems = [];
+  caseDbId: string = '';
 
   renderContent: any = {
     type: 'fortalecimento',
@@ -49,80 +50,132 @@ export class GenericListItemsPage implements OnInit {
     private contentService: ContentService,
     private userDataService: UserDataService,
     private storage: Storage,  
+    private alertController: AlertController,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
+
     this.renderContent = this.contentService.getRenderContent();
     this.renderContent.type = 'fortalecimento';
 
-    //retrieve data from db
-    this.userDataService.getUserInfo()
+    this.selectedCase = {
+      id: '',
+      displayName: ''
+    };
+    this.storage.get('dbIdCase')
+      .then((id) => {
+        if(id != null && id != ''){
+          this.selectedCase.id = id;
+          this.selectedCase.displayName = id.split('_')[0]
+        }
+        this.getComponentFavorites();
+      })
+      .catch((err) =>{
+        this.presentAlertError('Algo deu errado. Tente novamente.','Erro','/home');
+      })
+  }
+
+  async presentAlertError(message,title,page_route){
+    const alert = await this.alertController.create({
+      header: title,
+      message: message,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            this.navCtrl.navigateForward(page_route);
+          }
+        },      
+      ]
+    });
+    alert.present();
+  }
+
+  // decide se os favoritos a serem carregados são o global 
+  getComponentFavorites(){
+     this.userDataService.getUserInfo()
       .subscribe(
         (user: UserInfo) => {
           // se há o campo favorites
-          if(user.favorites){
-            this.favorites = user.favorites
-            this.storage.set('favorites', user.favorites);
+          // if(user.favorites){
+          //   this.favoritesIds = user.favorites
+          //   this.storage.set('favorites', user.favorites);
+          //   this.favoriteItems = this.getFavoriteItems();
+          // }else{
+          //   this.getLocalStorageFavorites();
+          // }
+          
+
+          if(this.selectedCase.id != ''){
+            if(user.cases[this.selectedCase.id]){
+              // se tem atendimento selecionado e favoritos nesse case
+              this.favoritesIds = user.cases[this.selectedCase.id].favorites;
+              this.favoriteItems = this.getFavoriteItems();
+            }
+          }else if(this.selectedCase.id == '' && user.favorites){
+            //se nao tem atendimento selecionado, mas existe os favoritos globais
+            this.favoritesIds = user.favorites;
             this.favoriteItems = this.getFavoriteItems();
-          }else{
-            this.getLocalStorageFavorites();
           }
         },
         (err) => {
-          this.getLocalStorageFavorites();
+          //parei aqui - quando pegar do local storage
+          // this.getLocalStorageFavorites();
         },
         () => {}
       )
   }
 
-  ionViewWillEnter(){
-    this.selectedCase = {
-      id: '',
-      displayName: ''
-    };
-    this.storage.get('dbIdCase').then((id) => {
-      if(id != null && id != ''){
-        this.selectedCase.id = id;
-        this.selectedCase.displayName = id.split('_')[0]
-      }
-    })
-  }
-
-  getLocalStorageFavorites(){
-    let localFavorites = this.storage.get('favorites').then((arr) => {
-      if(arr){
-        this.favorites = arr;
-        this.userDataService.updateUserFavorites(this.favorites);
-        this.favoriteItems = this.getFavoriteItems();
-      }
-    })
-  }
+  
+  // getLocalStorageFavorites(){
+  //   let localFavorites = this.storage.get('favorites').then((arr) => {
+  //     if(arr){
+  //       this.favoritesIds = arr;
+  //       this.userDataService.updateUserGlobalFavorites(this.favoritesIds);
+  //       this.favoriteItems = this.getFavoriteItems();
+  //     }
+  //   })
+  // }
 
   addFavoriteCard(event: Event, id: number){
-    event.stopPropagation()
+    event.stopPropagation();
     event.preventDefault();
-    this.favorites.push(id);
-    this.userDataService.updateUserFavorites(this.favorites)
-    this.storage.set('favorites', this.favorites);
-    this.favoriteItems = this.getFavoriteItems();
+    this.favoritesIds.push(id);
+    this.updateFavoritesCards();
   }
 
   removeFavoriteCard(event: Event, id: number){
     event.stopPropagation()
     event.preventDefault();
-    let position = this.favorites.indexOf(id);
+    let position = this.favoritesIds.indexOf(id);
 
     if(position != -1){
-      this.favorites.splice(position, 1);
-      this.userDataService.updateUserFavorites(this.favorites);
-      this.storage.set('favorites', this.favorites);
-      this.favoriteItems = this.getFavoriteItems();
+      this.favoritesIds.splice(position, 1);
+      // this.userDataService.updateUserGlobalFavorites(this.favoritesIds);
+      // this.storage.set('favorites', this.favoritesIds);
+      // this.favoriteItems = this.getFavoriteItems();
+      this.updateFavoritesCards();
     }
   }
 
+  updateFavoritesCards(){
+    if(this.selectedCase.id){
+      this.userDataService.updateSelectedCaseFavorites(this.selectedCase.id, this.favoritesIds);
+    }else{
+      this.userDataService.updateUserGlobalFavorites(this.favoritesIds)
+    }
+    // this.storage.set('favorites', this.favoritesIds);
+    this.favoriteItems = this.getFavoriteItems();
+  }
+
+
+
   getFavoriteItems(){
     return this.renderContent.data.filter(el =>{
-      return this.favorites.includes(el.id)
+      return this.favoritesIds.includes(el.id)
     })
   }
 }

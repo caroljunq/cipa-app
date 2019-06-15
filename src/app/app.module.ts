@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { AuthGuardService } from './services/firebase/auth-guard.service';
 import { FirestoreSettingsToken } from '@angular/fire/firestore';
 
+import { Network } from '@ionic-native/network/ngx';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { FirestoreSettingsToken } from '@angular/fire/firestore';
     { provide: FirestoreSettingsToken, useValue: {} },
     ContentService,
     AuthGuardService, 
-    AngularFirestore
+    AngularFirestore,
+    Network
   ],
   bootstrap: [AppComponent]
 })
