@@ -37,8 +37,8 @@ export class UserDataService {
 
   addCase(newCase: Case){
     this.contentService.removeSelectedCase();
-    const dob = new Date(newCase.dob);
-    const case_id = newCase.id + '_' + dob.getTime();
+    const date = new Date();
+    const case_id = newCase.id + '_' + date.getTime();
     const docRef = this.db.collection('users').doc(this.userInfo.email);
 
     newCase.db_id = case_id;

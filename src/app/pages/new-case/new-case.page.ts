@@ -125,8 +125,7 @@ export class NewCasePage implements OnInit {
   saveCaseChanges(){
     if(this.case.id && this.case.notes && this.case.gender && this.case.dob){
       if(this.validateIdField()){
-        console.log(this.case.gender);
-        console.log(this.case.notes);
+        this.userDataService.deleteCase(this.case.db_id);
         this.userDataService.addCase({
           id: this.case.id,
           db_id: this.case.db_id,
@@ -135,9 +134,7 @@ export class NewCasePage implements OnInit {
           notes: this.case.notes,
           created: this.case.created,
           favorites: this.case.favorites
-        })
-
-        this.userDataService.deleteCase(this.case.db_id);
+        }) 
         this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
       }else{
         this.PresentToast('O campo de Identificação deve conter apenas letras e/ou números.', 2000);
