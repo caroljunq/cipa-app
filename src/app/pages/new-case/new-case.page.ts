@@ -112,12 +112,7 @@ export class NewCasePage implements OnInit {
           favorites: this.case.favorites,
           created: `${curDate.getDate()}/${curDate.getMonth() + 1}/${curDate.getFullYear()}`
         })
-          .then((res) => {
-            this.presentAlertSuccess('Atendimento criado.','Sucesso','/cases')
-          })
-          .catch((err) =>{
-            this.PresentToast('Algo deu errado. Tente novamente.',2000)
-          })
+        this.presentAlertSuccess('Atendimento criado.','Sucesso','/cases')
       }else{
         this.PresentToast('O campo de Identificação deve conter apenas letras ou números.', 2000);
       }
@@ -130,7 +125,8 @@ export class NewCasePage implements OnInit {
   saveCaseChanges(){
     if(this.case.id && this.case.notes && this.case.gender && this.case.dob){
       if(this.validateIdField()){
-
+        console.log(this.case.gender);
+        console.log(this.case.notes);
         this.userDataService.addCase({
           id: this.case.id,
           db_id: this.case.db_id,
@@ -156,13 +152,8 @@ export class NewCasePage implements OnInit {
   }
 
   deleteCase(){
-    this.userDataService.deleteCase(this.case.db_id)
-      .then((res) => {
-        this.presentAlertSuccess('Atendimento excluído.','Sucesso','/cases')
-      })
-      .catch((err) =>{
-        this.PresentToast('Algo deu errado. Tente novamente.',2000)
-      })
+    this.userDataService.deleteCase(this.case.db_id);
+    this.presentAlertSuccess('Atendimento excluído.','Sucesso','/cases');      
   }
 
   useCase(){
