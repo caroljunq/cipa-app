@@ -25,7 +25,7 @@ export class CasesPage implements OnInit {
     private userDataService: UserDataService,
     private contentService: ContentService,
     private storage: Storage,
-    public toastController: ToastController,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class CasesPage implements OnInit {
           }
         },
         (err) => {
-          // pegar algum dado do localstorage?
+          this.PresentToast('Algo deu errado. Tente novamente.',2000);
         },
         () => {}
       )
@@ -84,7 +84,6 @@ export class CasesPage implements OnInit {
   cleanCase(){
     this.storage.set('dbIdCase','')
       .then((res) =>{
-        this.contentService.removeSelectedCase();
         this.selectedCase = {
           id: '',
           displayName: ''

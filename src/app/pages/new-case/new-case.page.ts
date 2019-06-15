@@ -110,7 +110,7 @@ export class NewCasePage implements OnInit {
           dob: this.case.dob.valueOf(),
           notes: this.case.notes,
           favorites: this.case.favorites,
-          created: `${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
+          created: `${curDate.getDate()}/${curDate.getMonth() + 1}/${curDate.getFullYear()}`
         })
           .then((res) => {
             this.presentAlertSuccess('Atendimento criado.','Sucesso','/cases')
@@ -128,22 +128,26 @@ export class NewCasePage implements OnInit {
   }
 
   saveCaseChanges(){
-    if(this.validateIdField()){
+    if(this.case.id && this.case.notes && this.case.gender && this.case.dob){
+      if(this.validateIdField()){
 
-      this.userDataService.addCase({
-        id: this.case.id,
-        db_id: this.case.db_id,
-        gender: this.case.gender,
-        dob: this.case.dob.valueOf(),
-        notes: this.case.notes,
-        created: this.case.created,
-        favorites: this.case.favorites
-      })
+        this.userDataService.addCase({
+          id: this.case.id,
+          db_id: this.case.db_id,
+          gender: this.case.gender,
+          dob: this.case.dob.valueOf(),
+          notes: this.case.notes,
+          created: this.case.created,
+          favorites: this.case.favorites
+        })
 
-      this.userDataService.deleteCase(this.case.db_id);
-      this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
+        this.userDataService.deleteCase(this.case.db_id);
+        this.presentAlertSuccess('Atendimento editado.', 'Sucesso','/cases');
+      }else{
+        this.PresentToast('O campo de Identificação deve conter apenas letras e/ou números.', 2000);
+      }
     }else{
-      this.PresentToast('O campo de Identificação deve conter apenas letras e/ou números.', 2000);
+      this.PresentToast('Todos os campos devem ser preenchidos.', 3000);
     }
   }
 
@@ -157,7 +161,7 @@ export class NewCasePage implements OnInit {
         this.presentAlertSuccess('Atendimento excluído.','Sucesso','/cases')
       })
       .catch((err) =>{
-        this.PresentToast('Algo deu errado. Verifique sua conexão com a Internet.',2000)
+        this.PresentToast('Algo deu errado. Tente novamente.',2000)
       })
   }
 
