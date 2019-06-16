@@ -1,38 +1,69 @@
 <ion-header>
   <ion-toolbar>
-    <ion-grid *ngIf="renderContent.category == 'diagnostics'" class="extra-header">
-      <ion-label>Grupo</ion-label>
-      <ion-label>{{ subtitle }}</ion-label>
+    <ion-grid class="extra-header">
+      <!-- <ion-label>Grupo</ion-label> -->
+      <ion-label>{{ dictionary.group[renderContent.group] }}</ion-label>
     </ion-grid>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ title }}</ion-title>
+    <ion-title class="title-less">{{ dictionary.category[renderContent.category] }}</ion-title>
+    <ion-title>{{ dictionary.type[renderContent.type] }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+   <ion-row class="case-box-custom" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title-custom">Atendimento</span>
+    <span class="case-name truncate">{{ selectedCase.displayName }}</span>
+   </ion-row>
   <ion-list>
     <ion-item>
-      <ion-label>{{ select_label }}</ion-label>
-      <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="selected_option">
-        <ion-select-option *ngFor="let value of this.select_values; let i = index" value="{{ value }}">{{ select_options[i] }}</ion-select-option>
+      <ion-label>Categoria</ion-label>
+      <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="renderContent.type">
+        <ion-select-option *ngFor="let value of this.select_type_values; let i = index" value="{{ value }}"><span class="select-option">{{ value }}</span></ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
    <ion-searchbar [(ngModel)]="terms" placeholder="Procurar"></ion-searchbar>
    <ion-grid>
-     <ion-row *ngFor="let item of renderContent.data | search : terms">
-        <mat-expansion-panel *ngIf="selected_option == item.type">
+      <ion-row *ngFor="let item of favoriteItems | search : terms">
+        <mat-expansion-panel *ngIf="renderContent.type == item.type">
+          <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
+            <mat-panel-title class="header-panel-favorite">
+                <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favoritesIds.includes(item.id)"></ion-icon>
+                <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favoritesIds.includes(item.id)"></ion-icon>              <div class="truncate">
+                {{ item.text }}
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="mat-panel-body">
+            <ion-row>
+                <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favoritesIds.includes(item.id)"></ion-icon>
+                <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favoritesIds.includes(item.id)"></ion-icon>            </ion-row>
+            <span class="card-msg">{{ item.text }}</span>
+          </section>
+        </mat-expansion-panel>
+      </ion-row>
+      <ion-row *ngFor="let item of renderContent.data | search : terms">
+        <mat-expansion-panel *ngIf="renderContent.type == item.type && !favoritesIds.includes(item.id)">
            <mat-expansion-panel-header collapsedHeight="80px" expandedHeight="30px">
-              <mat-panel-title>
-                 <div style="" class="truncate">
+              <mat-panel-title class="header-panel-favorite">
+                  <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favoritesIds.includes(item.id)"></ion-icon>
+                  <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favoritesIds.includes(item.id)"></ion-icon>                 
+                  <div class="truncate">
                    {{ item.text }}
                  </div>
               </mat-panel-title>
            </mat-expansion-panel-header>
-           {{ item.text }}
+           <section class="mat-panel-body">
+             <ion-row>
+                <ion-icon class="favorite-button" name="star-outline" (click)="addFavoriteCard($event, item.id)" *ngIf="!favoritesIds.includes(item.id)"></ion-icon>
+                <ion-icon class="favorite-button" name="star" (click)="removeFavoriteCard($event, item.id)" *ngIf="favoritesIds.includes(item.id)"></ion-icon>
+             </ion-row>
+              <span class="card-msg">{{ item.text }}</span>
+            </section>
         </mat-expansion-panel>
-     </ion-row>
+      </ion-row>
    </ion-grid>
 </ion-content>

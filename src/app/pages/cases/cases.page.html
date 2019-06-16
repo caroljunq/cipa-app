@@ -1,40 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Atendimentos</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col text-center>
-            <h3> Casos e Atendimentos</h3>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-list>
-        <ion-item-sliding *ngFor="let item of cases">
-            <ion-item>
-              <ion-card class="caseCard">
-                 <ion-card-header>
-                    <ion-card-title>  <ion-icon name="star-outline"></ion-icon> {{item.id}} </ion-card-title>
-                 </ion-card-header>
-                 <ion-card-content>
-                  Criado em: {{ item.date }}
-                 </ion-card-content>
-              </ion-card>
-            </ion-item>
-        
-            <ion-item-options side="end">
-              <ion-item-option style="background-color: gold;"> Editar </ion-item-option>
-              <ion-item-option style="background-color: red;"> Excluir </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
-    </ion-list>
-
-     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate reduce-truncate">{{ selectedCase.displayName }}</span>
+    <ion-icon class="close-case" name="trash" (click)="cleanCase()"></ion-icon>
+  </div>
+  <ion-grid>
+    <ion-row justify-content-center [ngClass]="{'half-width':selectedCase.displayName != ''}">
+      <ion-button class="create-case" (click)="createCase()" expand="full"> Criar atendimento </ion-button>
+    </ion-row>
+    <ion-card class="case-item" *ngFor="let case_id of cases_id">
+      <ion-card-header>
+        <ion-card-title>{{ cases[case_id].id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="truncate" (click)="editCase(case_id)">
+        <span class="case-notes">{{ cases[case_id].notes }}</span>
+        <ion-row class="line-edit">
+          <span class="case-created col-md-9">Criado em {{ cases[case_id].created }}</span>
+          <ion-icon class="col-md-3" name="create"></ion-icon>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <section *ngIf="cases_id.length == 0" class="no-data">
+      Não há atendimentos disponíveis ou não há conexão de Internet disponível para obter os dados.
+    </section>
+  </ion-grid>
 </ion-content>
+

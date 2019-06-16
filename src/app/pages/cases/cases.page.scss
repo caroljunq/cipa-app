@@ -1,4 +1,52 @@
-.caseCard{
-    width: 100%;
-    background: #4DE9A0;
+.case-item{
+    background: #87bcdc;
+
+    // & > ion-card-content{
+        
+    // }
+}
+
+.case-created{
+    margin-top: 12px;
+    display: block;
+}
+
+.create-case{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.case-notes{
+    color: #2d2d2d;
+}
+
+.line-edit{
+    align-items: center;
+    justify-content: space-between;
+
+    ion-icon{
+        width: 2rem;
+        height: 1.4rem;
+    }
+}
+
+.no-data{
+    // text-align: center;
+    margin-top: 1rem;
+}
+
+.close-case{
+    width: 1.8rem;
+    height: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #756f6f;
+}
+
+.reduce-truncate{
+    width: 5rem;
+    position: absolute;
+    bottom: 0.3rem;
+    left: 0.3rem;
 }

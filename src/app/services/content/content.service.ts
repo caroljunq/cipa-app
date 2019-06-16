@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { diagnostics_list } from '../diagnostics-data';
 import { interventions_list } from '../interventions-data';
+import { Case } from './../../services/models/case';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -8,43 +10,86 @@ import { interventions_list } from '../interventions-data';
 
 export class ContentService {
   renderContent: any = {
-    category: '',
+    type: 'fortalecimento',
     group: '',
-    data: []
+    category: '',
+    data: [],
+    case: {
+      db_id: '',
+      id: '',
+      gender: '',
+      dob: '',
+      notes: '',
+      created: '',
+      favorites: []
+    },
   };
 
-  constructor() {}
+  constructor(private storage: Storage) {}
 
-  // Diagnostics functions
-  getDiagnostics(){
-    return diagnostics_list;
+  setType(type: string){
+    this.renderContent.type = type;
   }
 
-  getSpecificDiagnostics(group){
+  setGroup(group: string){
+    this.renderContent.group = group;
+  }
+
+  setCategory(category: string){
+    this.renderContent.category = category;
+  }
+
+  getSpecificDiagnostics(group: string){
     return diagnostics_list.filter( el => {
       return el.group == group;
     })
   }
 
-  // interventions functions
-  getInterventions(){
-    return interventions_list;
+  getSpecificInterventions(group: string){
+    return interventions_list.filter( el => {
+      return el.group == group;
+    })
   }
 
-  setRenderContent(category, group){
-    this.renderContent = {
-      category: category,
-      group: group
-    }
-
-    if(group != ''){
+  setData(group: string){
+    if(this.renderContent.category == 'diagnosticos' ){
       this.renderContent.data = this.getSpecificDiagnostics(group)
     } else{
-      this.renderContent.data = this.getInterventions();
+      this.renderContent.data = this.getSpecificInterventions(group);
     }
   }
 
   getRenderContent(){
     return this.renderContent;
+  }
+
+  setRenderCase(curCase: Case){
+    this.renderContent.case = curCase;
+  }
+
+  setSelectedCase(db_id: string){
+    return this.storage.set('dbIdCase', db_id);
+  }
+
+  removeSelectedCase(){
+    this.storage.set('dbIdCase', '');
+  }
+
+  resetRenderContent(){
+    this.renderContent = {
+      type: 'fortalecimento',
+      group: '',
+      category: '',
+      data: [],
+      case: {
+        db_id: '',
+        id: '',
+        gender: '',
+        dob: '',
+        notes: '',
+        created: '',
+        favorites: []
+      },
+    };
   }
 }

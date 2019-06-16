@@ -4,8 +4,8 @@
 }
 
 .img-header{
-   margin-top: 10px;
-   height: 70px;
+   margin-top: 5px;
+   height: 100px;
 }
 
 .home-grid{
@@ -40,4 +40,26 @@
   &:active{
     transform: scale(1.2);
   }
+}
+
+.defBlock{
+  background: #0459A8;
+  color: white;
+  padding: 28px; 
+  margin: 0px;
+  text-align: center;
+  margin-top: 35px;
+  flex-direction: column;
+  align-items: center;
+
+  ion-icon{
+    font-size: 1.3rem;
+  }
+}
+
+.step-access{
+  margin: 15px;
+  color: white;
+  font-weight: 600;
+  --background: none;
 }

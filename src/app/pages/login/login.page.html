@@ -22,10 +22,11 @@
         </ion-col>
       </ion-row>
       <ion-row class="buttonLine">
-           <ion-button expand="full" class="loginButton" [routerLink]="'/home'" [routerDirection]="'forward'"> Entrar </ion-button>
+           <ion-button expand="full" class="loginButton" (click)="LogIn();"> Entrar </ion-button>
+           <p text-muted> <a [routerLink]="['/forgot-password']"> Esqueceu sua senha? </a> </p>
       </ion-row>
       <ion-row class="createAccount">
-         <p class='createAccountLink' [routerLink]="'/create-account'" [routerDirection]="'back'"> Criar uma nova conta </p>
+         <p class='createAccountLink' [routerLink]="'/create-account'" [routerDirection]="'forward'"> Criar uma nova conta </p>
       </ion-row>
     </ion-grid>
 

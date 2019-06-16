@@ -1,7 +1,7 @@
 .backIcon{
     margin: 10px;
-    font-size: 30px;
-    color: #13ACA7;
+    font-size: 2.2rem;
+    color: rgb(4,89,168);
 }
 
 .title, .button{
@@ -10,21 +10,53 @@
 
     p {
         text-transform: uppercase;
-        color: #13ACA7;
+        color: rgb(4,89,168);
         font-weight: 500;
     }
 }
 
-.Input{
-    border: 1px solid #20A8A4;
+.alert{
+    border: 2px solid red; 
+    color: red;
     --padding: 10px;
     --padding-start: 15px;
+    width: 100%;
     height: 60px;
     margin: 10px;
+}
+
+ion-label{
+    margin-left: 20px;
+    margin-right: 20px;
+    // font-size: 14px;
+    color: #0459A8;
+    font-size: 0.9rem;
 }
 
 .continueButton{
     margin: 0px;
     margin-top: 40px;
     align-self: center;
+}
+
+/** inputs */
+ion-input, ion-select, ion-datetime{
+    border: 1px solid rgb(4,89,168);
+    color: #0459A8;
+    --padding: 10px;
+    --padding-start: 15px;
+    width: 100%;
+    height: 60px;
+    margin: 10px;
+
+}
+
+.perguntas{
+    margin-left: 15px;
+    margin-right: 0px;
+    line-height: 1.5;
+}
+
+ion-row{
+    margin-bottom: 10px;
 }

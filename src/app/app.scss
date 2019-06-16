@@ -36,25 +36,26 @@ ion-menu-toggle > ion-item{
   margin: 7px;
 
   & > ion-label{
-    color: var(--secondary-color) !important;
+    color: #0459A8 !important;
     text-transform: uppercase;
     font-size: 1.1rem !important;
   }
 
   & > ion-icon{
-    color: var(--primary-color) !important;
+    color: #0459A8 !important;
     font-size: 2rem;
   }
 
 }
 
 ion-button{
-  --background: var(--primary-color);
+  // --background: var(--primary-color);
+  --background: #1C5577;
   width: 90%;
 }
 
 ion-toolbar{
-  --background: var(--primary-color);
+  --background: #1C5577;
   --color: white;
   text-align: center;
 
@@ -83,6 +84,67 @@ ion-back-button{
 
 .backIcon{
   margin: 10px;
-  font-size: 30px;
-  color: #13ACA7;
+  font-size: 2.2rem;
+  color: #1C5577;
+}
+
+p{
+  line-height: 1.5;
+}
+
+div.alert-radio-label{
+  white-space: inherit !important;
+  text-transform: capitalize !important;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.case-box-right{
+  width: 7rem;
+  height: 3.2rem;
+  position: absolute;
+  right: 1rem;
+  border: 1px solid #1c5577;
+  top: 1rem;
+  display: flex;
+  align-items: flex-end;  
+  justify-content: center;
+  padding: 0.4rem;
+
+  span{
+    color: #756f6f;
+  }
+}
+
+.case-box-left{
+  width: 7rem;
+  height: 3.2rem;
+  position: absolute;
+  right: 1rem;
+  border: 1px solid #1c5577;
+  top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.4rem;
+
+  span{
+    color: #756f6f;
+  }
+}
+
+.case-title{
+  position: absolute;
+  top: 0.2rem;
+  left: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.half-width{
+  width: 60% !important;
 }

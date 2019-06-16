@@ -7,9 +7,14 @@
 mat-expansion-panel{
   width: 100%;
   margin-top: 20px;
-  background-color: #41DB79;
+  background-color: #87bcdc !important;
 }
 
+mat-expansion-panel-header {
+  background-color: #87bcdc !important;
+}
+
+// #87bcdc
 ion-row {
   display: flex;
   justify-content: center;
@@ -20,12 +25,12 @@ mat-panel-description {
 }
 
 
-.truncate {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+// .truncate {
+//   width: 100%;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
 
 .mat-expansion-panel-header-title {
   min-width: 0;
@@ -35,6 +40,46 @@ mat-panel-description {
   display: none;
 }
 
-// .searchbar-input{
-//
-// }
+ion-select{
+  text-transform: capitalize;
+}
+
+.title-less{
+  font-weight: 500;
+}
+
+.header-panel-favorite, .mat-panel-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-panel-body{
+  justify-content: end !important;
+}
+
+.favorite-button{
+  font-size: 3rem;
+  margin-right: 7px;
+  color: #1c5577;
+}
+
+.truncate, .card-msg{
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.case-box-custom{
+  width: 100%;
+  border: 1px solid #1c5577;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
+}
+
+.case-title-custom,.case-name{
+  color: #756f6f;
+  color: #756f6f;
+  text-align: center;
+}
+

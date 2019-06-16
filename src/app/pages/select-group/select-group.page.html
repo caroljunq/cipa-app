@@ -1,0 +1,25 @@
+<ion-content>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate">{{ selectedCase.displayName }}</span>
+  </div>
+  <ion-grid class="selection-menu">
+      <ion-row>
+        <ion-col>
+          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+        </ion-col>
+        <ion-col>
+            <ion-img class="cipaLogo" src="assets/imgs/cipe_violencia.jpg"></ion-img>
+        </ion-col>
+        <ion-col>
+
+        </ion-col>        
+      </ion-row>
+    <ion-row justify-content-center class="categories">
+      <ion-button class="btn-option" expand="full" (click)="selectGroup('crianca')">Criança</ion-button>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-button class="btn-option" expand="full" (click)="selectGroup('familia')">Família</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

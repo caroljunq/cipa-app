@@ -1,31 +1,41 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
+
 
 <ion-content>
+  <div class="case-box-right" *ngIf="selectedCase.displayName != ''">
+    <span class="case-title">Atendimento</span>
+    <span class="truncate">{{ selectedCase.displayName }}</span>
+  </div>
   <ion-row class="header-home">
-    <ion-img class="fake-icon menu-button" src="../../assets/imgs/menu.png" (click)="openMenu()"></ion-img>
-    <ion-img class="img-header" src="../../assets/imgs/cipalogo.PNG"></ion-img>
-    <ion-img class="fake-icon" src="../../assets/imgs/blank.png"></ion-img>
+    <ion-col size="2">
+      <ion-img class="fake-icon menu-button" src="assets/imgs/menu.png" (click)="openMenu()"></ion-img>
+    </ion-col>
+    <ion-col size="8">
+        <ion-img class="img-header" src="assets/imgs/cipe_violencia.jpg"></ion-img>
+    </ion-col>
+    <ion-col size="2">
+      <!--     <ion-img class="fake-icon" src="assets/imgs/blank.png"></ion-img>  -->
+    </ion-col>
   </ion-row>
-  <ion-grid class="home-grid">
+  <ion-grid class="home-grid" *ngIf="!firstAccess">
     <ion-row>
       <ion-button class="btnHomePage" [routerLink]="'/definition'" [routerDirection]="'forward'" expand="full"> Definição </ion-button>
     </ion-row>
     <ion-row>
-      <ion-button class="btnHomePage" expand="full" (click)="listInterventions()">Intervenções</ion-button>
+      <ion-button class="btnHomePage" [routerLink]="'/cases'" [routerDirection]="'forward'" expand="full"> Atendimentos </ion-button>
     </ion-row>
     <ion-row>
-      <ion-button class="btnHomePage" [routerLink]="'/diag-select-group'" [routerDirection]="'forward'" expand="full">Diagnósticos</ion-button>
+      <ion-button class="btnHomePage" (click)="navigateCategory('diagnosticos')" expand="full"> Consultar Diagnósticos </ion-button>
     </ion-row>
     <ion-row>
-      <ion-button class="btnHomePage" [routerLink]="'/ref'" [routerDirection]="'forward'" expand="full">Referências</ion-button>
+      <ion-button class="btnHomePage" (click)="navigateCategory('intervencoes')" expand="full"> Consultar Intervenções </ion-button>
     </ion-row>
   </ion-grid>
+  <ion-row class="defBlock" *ngIf="firstAccess" justify-content-center>        
+      <p>Este aplicativo tem o intuito de facilitar o uso dos diagnósticos e intervenções de enfermagem
+      para o enfrentamento da violência doméstica contra criança.</p>
+      <ion-button class="step-access" fill="clear" size="default" (click)="startApp()">
+          <span>COMEÇAR</span>
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+  </ion-row>
 </ion-content>

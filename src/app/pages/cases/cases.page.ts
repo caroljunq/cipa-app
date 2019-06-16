@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, ToastController } from '@ionic/angular';
+import { UserDataService } from '../../services/firebase/user-data.service';
+import { ContentService } from '../../services/content/content.service';
+import { UserInfo } from './../../services/models/user';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-cases',
@@ -7,40 +12,86 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CasesPage implements OnInit {
 
-  cases: any = [
-    {
-      id: 'KSS 2343',
-      date: '02/02/2019'
-    },
-    {
-      id: 'LOK 2312',
-      date: '23/12/2018'
-    },
-    {
-      id: 'LSO 2011',
-      date: '25/12/2018'
-    },
-    {
-      id: 'MCS 2801',
-      date: '31/11/2018'
-    },
-    {
-      id: 'JAS 2307',
-      date: '17/12/2018'
-    },
-    {
-      id: 'MPT 2403',
-      date: '20/01/2019'
-    },
-    {
-      id: 'ACS 2811',
-      date: '28/01/2019'
-    }
-  ];
+  cases_id: Array<string> = [];
+  cases: any;
 
-  constructor() { }
+  selectedCase: any = {
+    id: '',
+    displayName: ''
+  };
+
+  constructor(
+    private navCtrl: NavController,
+    private userDataService: UserDataService,
+    private contentService: ContentService,
+    private storage: Storage,
+    public toastController: ToastController
+  ) { }
 
   ngOnInit() {
+    this.contentService.resetRenderContent();
+    //retrieve data from db
+    this.userDataService.getUserInfo()
+      .subscribe(
+        (user: UserInfo) => {
+          if(user.cases){
+            this.cases_id = Object.keys(user.cases);
+            this.cases = user.cases;
+          }
+        },
+        (err) => {
+          this.PresentToast('Algo deu errado. Tente novamente.',2000);
+        },
+        () => {}
+      )
   }
 
+  ionViewWillEnter(){
+    this.selectedCase = {
+      id: '',
+      displayName: ''
+    };
+    this.storage.get('dbIdCase').then((id) => {
+      if(id != null && id != ''){
+        this.selectedCase.id = id;
+        this.selectedCase.displayName = id.split('_')[0]
+      }
+    })
+  }
+
+  async PresentToast(message, duration) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      color: 'dark', 
+      position: 'middle',
+      showCloseButton: true, 
+      closeButtonText: 'X'
+    });
+    toast.present();
+  }
+
+  createCase(){
+    this.contentService.resetRenderContent();
+    this.navCtrl.navigateForward('/new-case');
+  }
+
+  editCase(case_id: string){
+    this.contentService.setRenderCase(this.cases[case_id]);
+    this.navCtrl.navigateForward('/new-case');
+  }
+
+  cleanCase(){
+    this.storage.set('dbIdCase','')
+      .then((res) =>{
+        this.selectedCase = {
+          id: '',
+          displayName: ''
+        };
+        this.PresentToast('Atendimento desabilitado com sucesso.',3000);
+      })
+      .catch((error) =>{
+        this.PresentToast('Não foi possível desabilitar atendimento.',3000);
+      })
+  }
 }

@@ -1,30 +1,156 @@
-<ion-content padding>
-    <ion-grid>
+<ion-content>
+  <ion-grid class="grid">
+    <ion-row class="newCaseHeader">
+      <ion-col size="3">
+          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+      </ion-col>
+      <ion-col size="9">
+        <p class="title"> Perfil  </p>
+      </ion-col> 
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-icon name="arrow-round-back" [routerLink]="'/home'" [routerDirection]="'back'"  class="backIcon"></ion-icon>
+          <ion-item>
+            <ion-label position="floating"> Nome </ion-label>
+            <ion-input [(ngModel)]="user.name"> </ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col text-center>
-          <ion-img src="../../assets/imgs/profile.png" class="profilePic"></ion-img>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Sexo </ion-label>
+            <ion-select [(ngModel)]="user.sex" [value]="user.sex"> 
+                <ion-select-option value="f"> Feminino </ion-select-option>
+                <ion-select-option value="m"> Masculino </ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col text-center>
-           <h3> Nome Usuario </h3>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Data de Nascimento </ion-label>
+            <ion-datetime [(ngModel)]="user.dob" [value]="user.dob" displayFormat="DD MM YYYY" ></ion-datetime>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
-          <ion-col text-center class="profileJob">
-            <p> Pesquisadora </p>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Estado </ion-label>
+            <ion-input [(ngModel)]="state.nome" [value]="state.nome" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Cidade </ion-label>
+            <ion-input [(ngModel)]="city.nome" [value]="city.nome" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Formação </ion-label>
+            <ion-select [(ngModel)]="user.formation" [value]="user.formation" >
+                <ion-select-option value="enfermeira"> Enfermeira(o)  </ion-select-option>
+                <ion-select-option value="estudante"> Estudante de enfermagem </ion-select-option>
+                <ion-select-option value="outro"> Outro </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf=" user.formation == 'outro' ">
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> A sua formação </ion-label>
+            <ion-input [(ngModel)]="user.otherFormation" [value]="user.otherFormation" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating"> Área de atuação </ion-label>
+            <ion-select [(ngModel)]="user.actionArea" [value]="user.actionArea" >
+                <!-- preencher com os campos -->
+                <ion-select-option value="enfermeira"> Atenção Primaria a Saúde </ion-select-option>
+                <ion-select-option value="estudante"> Hospitalar </ion-select-option>
+                <ion-select-option value="outro"> Outro </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf=" user.actionArea == 'outro' ">
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating"> Sua área:  </ion-label>
+              <ion-input [(ngModel)]="user.otherArea" [value]="user.otherArea" ></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
-      <ion-row>
-        <ion-col text-center class="profileEmail">
-          <p> cipaapp@example.com </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating"> Tem experiêncial profissional com violência doméstica contra criança?</ion-label>
+              <ion-select [(ngModel)]="user.pastXp" [value]="user.pastXp" >
+                  <!-- preencher com os campos -->
+                  <ion-select-option value="sim"> Sim </ion-select-option>
+                  <ion-select-option value="nao"> Não </ion-select-option>
+                  <ion-select-option value="nsa"> Não se aplica </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating"> Tem experiência profissional com classificações de Enfermagem? </ion-label>
+              <ion-select [(ngModel)]="user.pastXpClass" [value]="user.pastXpClass" >
+                  <!-- preencher com os campos -->
+                  <ion-select-option value="CIPE"> Sim, CIPE </ion-select-option>
+                  <ion-select-option value="NANDA"> Sim, NANDA/ NIC/ NOC </ion-select-option>
+                  <ion-select-option value="nao"> Não </ion-select-option>
+                  <ion-select-option value="nsa"> Não se aplica </ion-select-option>
+                  <ion-select-option value="outro"> Outro </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf=" user.pastXpClass == 'outro' ">
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating"> Sua experiência:  </ion-label>
+              <ion-input [(ngModel)]="user.otherPastXpClass" [value]="user.otherPastXpClass" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+            <ion-button (click)="VerifyUser()" expand="full"> Salvar Mudanças </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating"> Email  </ion-label>
+              <ion-input [value]="userInfo.email" [disabled]="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+         
+            <ion-button (click)="SendEmail()" expand="full"> Mudar Senha </ion-button>
+        
+        </ion-row>
+
+        
+
+
+  </ion-grid>
+    
 
 </ion-content>
