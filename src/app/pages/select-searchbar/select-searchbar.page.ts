@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, ToastController } from '@ionic/angular';
 import { ContentService } from 'src/app/services/content/content.service';
 
 @Component({
@@ -15,11 +15,13 @@ export class SelectSearchbarPage implements OnInit {
   state: any;
   locationsFiltered = [];
   terms: string = '';
+  type: string = '';
 
   constructor(
     private navParams: NavParams,
     private modal: ModalController,
     private contentService: ContentService,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -28,11 +30,28 @@ export class SelectSearchbarPage implements OnInit {
 
   ionViewDidEnter(){
     this.state = this.navParams.get('state');
-    if(this.state.id){
+    this.type = this.navParams.get('type');
+
+    if(this.state.id && this.type == 'cidade'){
       this.locations = this.contentService.getCitiesState(this.state);
     }else{
       this.locations = this.contentService.getStates();
+      if(this.state.id){
+        this.selectedOption = this.state;
+      }
     }
+  }
+
+  async PresentToast(message, duration) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      color: 'dark', 
+      position: 'middle',
+      showCloseButton: true, 
+      closeButtonText: 'X'
+    });
+    toast.present();
   }
 
   checkItem(location){
@@ -40,8 +59,10 @@ export class SelectSearchbarPage implements OnInit {
   }
 
   closeModal(){
-    if(this.selectedOption.nome != ''){
+    if(this.selectedOption && this.selectedOption.nome != ''){
       this.modal.dismiss(this.selectedOption);
+    }else{
+      this.PresentToast('Selecione um local.',2000);
     }
   }
 
