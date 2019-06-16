@@ -4,18 +4,10 @@ import { User, UserInfo } from 'src/app/services/models/user';
 import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { state_list } from '../../services/cities/Estados';
 
 import { ModalController } from '@ionic/angular';
 import { SelectSearchbarPage } from '../select-searchbar/select-searchbar.page';
 
-
-/** Lista de cada estado */
-import {  citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE,
-          citiesOfDF, citiesOfES, citiesOfGO, citiesOfMA, citiesOfMG, citiesOfMS, 
-          citiesOfMT, citiesOfPA, citiesOfPB, citiesOfPE, citiesOfPI, citiesOfPR,
-          citiesOfRJ, citiesOfRN, citiesOfRO, citiesOfRR, citiesOfRS, citiesOfSC,
-          citiesOfTO, citiesOfSE, citiesOfSP } from './../../services/cities/cities';
 
 @Component({
   selector: 'app-create-account',
@@ -23,14 +15,6 @@ import {  citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
-
-  /** Variaveis para a listagem de estados e cidades  */
-  listaDeEstados = state_list;
-  listaDeCidades = [  , citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE,
-                        citiesOfDF, citiesOfES, citiesOfGO, citiesOfMA, citiesOfMG, citiesOfMS, 
-                        citiesOfMT, citiesOfPA, citiesOfPB, citiesOfPE, citiesOfPI, citiesOfPR,
-                        citiesOfRJ, citiesOfRN, citiesOfRO, citiesOfRR, citiesOfRS, citiesOfSC,
-                        citiesOfSE, citiesOfSP, citiesOfTO ];
 
   /** Informações pessoais do usuario  */
   name: string;
@@ -225,12 +209,11 @@ export class CreateAccountPage implements OnInit {
   async openModalState(){
     if(!this.modalOpened){
       this.selectedCity = null;
-      const arrayItems  = this.listaDeEstados;
       const title = 'seu estado'
       this.modalOpened  = true;
       const myModal = await this.modal.create({
         component: SelectSearchbarPage, 
-        componentProps:{items: arrayItems, title: title}
+        componentProps:{state: {}, title: title}
       });
 
       myModal.present()
@@ -247,12 +230,11 @@ export class CreateAccountPage implements OnInit {
   async openModalCity(){
     if(this.selectedState && !this.modalOpened){
       this.modalOpened  = true;
-      const arrayItems  = this.listaDeCidades[this.selectedState.id];
       const title = 'sua cidade';
       
       const myModal = await this.modal.create({
         component: SelectSearchbarPage, 
-        componentProps:{items: arrayItems, title: title}
+        componentProps:{state: this.selectedState, title: title}
       });
   
       myModal.present()

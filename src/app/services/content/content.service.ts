@@ -3,6 +3,12 @@ import { diagnostics_list } from '../diagnostics-data';
 import { interventions_list } from '../interventions-data';
 import { Case } from './../../services/models/case';
 import { Storage } from '@ionic/storage';
+import { state_list } from '../../services/cities/Estados';
+import {  citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE,
+  citiesOfDF, citiesOfES, citiesOfGO, citiesOfMA, citiesOfMG, citiesOfMS, 
+  citiesOfMT, citiesOfPA, citiesOfPB, citiesOfPE, citiesOfPI, citiesOfPR,
+  citiesOfRJ, citiesOfRN, citiesOfRO, citiesOfRR, citiesOfRS, citiesOfSC,
+  citiesOfTO, citiesOfSE, citiesOfSP } from './../../services/cities/cities';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +30,13 @@ export class ContentService {
       favorites: []
     },
   };
+
+  listaDeEstados = state_list;
+  listaDeCidades = [  , citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE,
+                        citiesOfDF, citiesOfES, citiesOfGO, citiesOfMA, citiesOfMG, citiesOfMS, 
+                        citiesOfMT, citiesOfPA, citiesOfPB, citiesOfPE, citiesOfPI, citiesOfPR,
+                        citiesOfRJ, citiesOfRN, citiesOfRO, citiesOfRR, citiesOfRS, citiesOfSC,
+                        citiesOfSE, citiesOfSP, citiesOfTO ];
 
   constructor(private storage: Storage) {}
 
@@ -91,5 +104,13 @@ export class ContentService {
         favorites: []
       },
     };
+  }
+
+  getCitiesState(state){
+    return this.listaDeCidades[state.id];
+  }
+
+  getStates(){
+    return this.listaDeEstados;
   }
 }

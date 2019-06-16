@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="terms" placeholder="Procurar"></ion-searchbar>
   <ion-list class="little-select-page">
     <ion-radio-group>
       <ion-list-header>
-        <ion-label>Selecione {{ category }}:</ion-label>
+        <ion-label>Pesquise e selecione {{ category }}:</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let location of locations | searchLocations : terms">
+      <ion-searchbar [(ngModel)]="terms" placeholder="Procurar" (ionChange)="filterLocations()"></ion-searchbar>
+      <ion-item *ngFor="let location of locationsFiltered">
         <ion-label>{{location.nome}}</ion-label>
         <ion-radio slot="start" value="{{ location.nome }}" (ionSelect)="checkItem(location)"></ion-radio>
       </ion-item>
