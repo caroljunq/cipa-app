@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { state_list } from '../../services/cities/Estados';
 
+import { ModalController } from '@ionic/angular';
+import { SelectSearchbarPage } from '../select-searchbar/select-searchbar.page';
+
+
 /** Lista de cada estado */
 import {  citiesOfAC, citiesOfAL, citiesOfAM, citiesOfAP, citiesOfBA, citiesOfCE,
           citiesOfDF, citiesOfES, citiesOfGO, citiesOfMA, citiesOfMG, citiesOfMS, 
@@ -34,6 +38,7 @@ export class CreateAccountPage implements OnInit {
   dob: any;
   selectedState = null;
   selectedCity = null;
+  modalOpened: boolean = false;
 
   /** Informações profissionais do usuario  */
   formation: string;
@@ -60,7 +65,9 @@ export class CreateAccountPage implements OnInit {
               private router: Router,
               private db: AngularFirestore, 
               private alertController: AlertController,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController,
+              private modal: ModalController
+            ) { }
 
   ngOnInit() {    
     // Reiniciando as variaveis
@@ -215,4 +222,46 @@ export class CreateAccountPage implements OnInit {
      return this.authService.UserInfo();
   }
 
+  async openModalState(){
+    if(!this.modalOpened){
+      this.selectedCity = null;
+      const arrayItems  = this.listaDeEstados;
+      const title = 'seu estado'
+      this.modalOpened  = true;
+      const myModal = await this.modal.create({
+        component: SelectSearchbarPage, 
+        componentProps:{items: arrayItems, title: title}
+      });
+
+      myModal.present()
+      
+      let selectedOption = await myModal.onWillDismiss();
+      this.modalOpened = false;
+
+      if(selectedOption.data){
+        this.selectedState = selectedOption.data;
+      }
+    }
+  }
+
+  async openModalCity(){
+    if(this.selectedState && !this.modalOpened){
+      this.modalOpened  = true;
+      const arrayItems  = this.listaDeCidades[this.selectedState.id];
+      const title = 'sua cidade';
+      
+      const myModal = await this.modal.create({
+        component: SelectSearchbarPage, 
+        componentProps:{items: arrayItems, title: title}
+      });
+  
+      myModal.present()
+      
+      let selectedOption = await myModal.onWillDismiss();
+      this.modalOpened = false;
+      if(selectedOption.data){
+        this.selectedCity = selectedOption.data;
+      }
+    }
+  }
 }

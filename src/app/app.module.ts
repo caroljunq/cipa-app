@@ -28,6 +28,8 @@ import { FirestoreSettingsToken } from '@angular/fire/firestore';
 
 import { Network } from '@ionic-native/network/ngx';
 
+import { SelectSearchbarPageModule } from './pages/select-searchbar/select-searchbar.module'
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +43,8 @@ import { Network } from '@ionic-native/network/ngx';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     IonicStorageModule.forRoot(), 
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    SelectSearchbarPageModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

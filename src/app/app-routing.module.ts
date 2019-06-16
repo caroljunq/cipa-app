@@ -84,7 +84,8 @@ const routes: Routes = [
     path: 'change-password', 
     canActivate: [AuthGuardService],
     loadChildren: './pages/change-password/change-password.module#ChangePasswordPageModule' 
-  }
+  },
+  { path: 'select-searchbar', loadChildren: './pages/select-searchbar/select-searchbar.module#SelectSearchbarPageModule' }
 ];
 
 @NgModule({

@@ -4,7 +4,6 @@ import { NavController, MenuController } from '@ionic/angular';
 import { ContentService } from '../../services/content/content.service';
 import { Storage } from '@ionic/storage';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -62,6 +61,5 @@ export class HomePage implements OnInit {
   startApp(){
     this.firstAccess = false;
     this.storage.set('firstAccess', false);
-  }
-  
+  } 
 }
