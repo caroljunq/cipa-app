@@ -213,7 +213,7 @@ export class CreateAccountPage implements OnInit {
       this.modalOpened  = true;
       const myModal = await this.modal.create({
         component: SelectSearchbarPage, 
-        componentProps:{state: {}, title: title, type: 'estado'}
+        componentProps:{state: {}, title: title, type: 'estado', city: null}
       });
 
       myModal.present()
@@ -234,7 +234,7 @@ export class CreateAccountPage implements OnInit {
       
       const myModal = await this.modal.create({
         component: SelectSearchbarPage, 
-        componentProps:{state: this.selectedState, title: title, type: 'cidade'}
+        componentProps:{state: this.selectedState, title: title, type: 'cidade', city: null}
       });
   
       myModal.present()

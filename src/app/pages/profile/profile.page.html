@@ -33,23 +33,23 @@
         <ion-col>
           <ion-item>
             <ion-label position="floating"> Data de Nascimento </ion-label>
-            <ion-datetime [(ngModel)]="user.dob" [value]="user.dob" displayFormat="DD MM YYYY" ></ion-datetime>
+            <ion-datetime [(ngModel)]="user.dob" [value]="user.dob" displayFormat="DD/MM/YYYY" ></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item>
+          <ion-item (click)="openModalState()">
             <ion-label position="floating"> Estado </ion-label>
-            <ion-input [(ngModel)]="state.nome" [value]="state.nome" ></ion-input>
+            <ion-input [ngModel]="user.selectedState?.nome" readonly></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item>
+          <ion-item (click)="openModalCity()">
             <ion-label position="floating"> Cidade </ion-label>
-            <ion-input [(ngModel)]="city.nome" [value]="city.nome" ></ion-input>
+            <ion-input [ngModel]="user.selectedCity?.nome" readonly></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

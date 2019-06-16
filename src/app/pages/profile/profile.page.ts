@@ -3,7 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AuthenticationService } from 'src/app/services/firebase/authentication.service';
 import { UserInfo } from './../../services/models/user';
 import { Observable } from 'rxjs';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
+import { ContentService } from 'src/app/services/content/content.service';
+import { SelectSearchbarPage } from '../select-searchbar/select-searchbar.page';
 
 @Component({
   selector: 'app-profile',
@@ -12,29 +14,21 @@ import { ToastController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
-  public userInfo: any;
-  public userDBinfo: any;
-  userDoc: AngularFirestoreDocument<UserInfo>;
-  singleUser: Observable<UserInfo>;
+    public userInfo: any;
+    public userDBinfo: any;
+    userDoc: AngularFirestoreDocument<UserInfo>;
+    singleUser: Observable<UserInfo>;
 
-  user = {} as UserInfo;
-  state: { nome?: string; id?: number; sigla?: string; };
-  city: { nome?: string; id?: number; estado?: number; };
+    user = {} as UserInfo;
+    modalOpened: boolean = false;
 
-  constructor(private authService: AuthenticationService,
-              private db: AngularFirestore,
-              public toastController: ToastController) {
-                  this.state = {
-                      nome: '', 
-                      id: null, 
-                      sigla: ''
-                  }; 
-                  this.city = {
-                      nome: '', 
-                      id: null, 
-                      estado: null
-                  }
-               }
+    constructor(
+        private authService: AuthenticationService,
+        private db: AngularFirestore,
+        public toastController: ToastController,
+        private contentService: ContentService,
+        private modal: ModalController
+    ) {}
 
   ngOnInit() {
       this.userInfo = this.authService.UserInfo();
@@ -44,20 +38,22 @@ export class ProfilePage implements OnInit {
 
       this.singleUser.subscribe((res) => {;
           this.user = res;
-          this.state = res.selectedState; 
-          this.city = res.selectedCity;
       });
   }
 
   VerifyUser(){
-      // Atualizar informações do usuario 
-      const docRef = this.db.collection('users').doc(this.userInfo.email); 
+      // Atualizar informações do usuario
+      if(this.user.selectedCity && this.user.selectedState && this.user.name != ''){
+        const docRef = this.db.collection('users').doc(this.userInfo.email); 
 
-      const update = docRef.update(this.user).then(() => {
-          this.PresentToast('Informações Atualizadas com sucesso!', 3000); 
-      }).catch((err) => {
-          this.PresentToast('Não foi possível atualizar as informações, por favor tente mais tarde.', 4000); 
-      })
+        const update = docRef.update(this.user).then(() => {
+            this.PresentToast('Informações Atualizadas com sucesso!', 3000); 
+        }).catch((err) => {
+            this.PresentToast('Não foi possível atualizar as informações, por favor tente mais tarde.', 4000); 
+        })
+      }else{
+        this.PresentToast('Todos os campos devem ser preenchidos.', 2000); 
+      }
   }
 
   SendEmail() {
@@ -75,5 +71,46 @@ export class ProfilePage implements OnInit {
       color: 'dark'
     });
     toast.present();
+  }
+
+  async openModalState(){
+    if(!this.modalOpened){
+      const title = 'seu estado'
+      this.user.selectedCity = null;
+      this.modalOpened  = true;
+      const myModal = await this.modal.create({
+        component: SelectSearchbarPage, 
+        componentProps:{state: this.user.selectedState, title: title, type: 'estado', city: null}
+      });
+
+      myModal.present()
+      
+      let selectedOption = await myModal.onWillDismiss();
+      this.modalOpened = false;
+
+      if(selectedOption.data){
+        this.user.selectedState = selectedOption.data;
+      }
+    }
+  }
+
+  async openModalCity(){
+    if(this.user.selectedState && !this.modalOpened){
+      this.modalOpened  = true;
+      const title = 'sua cidade';
+      
+      const myModal = await this.modal.create({
+        component: SelectSearchbarPage, 
+        componentProps:{state: this.user.selectedState, title: title, type: 'cidade', city: this.user.selectedCity}
+      });
+  
+      myModal.present()
+      
+      let selectedOption = await myModal.onWillDismiss();
+      this.modalOpened = false;
+      if(selectedOption.data){
+        this.user.selectedCity = selectedOption.data;
+      }
+    }
   }
 }

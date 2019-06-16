@@ -13,6 +13,7 @@ export class SelectSearchbarPage implements OnInit {
   selectedOption = null;
   category: string = '';
   state: any;
+  city: any;
   locationsFiltered = [];
   terms: string = '';
   type: string = '';
@@ -30,10 +31,14 @@ export class SelectSearchbarPage implements OnInit {
 
   ionViewDidEnter(){
     this.state = this.navParams.get('state');
+    this.city  = this.navParams.get('city');
     this.type = this.navParams.get('type');
 
     if(this.state.id && this.type == 'cidade'){
       this.locations = this.contentService.getCitiesState(this.state);
+      if(this.city){
+        this.selectedOption = this.city;
+      }
     }else{
       this.locations = this.contentService.getStates();
       if(this.state.id){
