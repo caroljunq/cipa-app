@@ -7,6 +7,7 @@ Este aplicativo tem o intuito de facilitar o uso dos diagnósticos e intervenç�
 This application was developed to facilitate the use of diagnostics and nursing to face domestic violence against children.
 
 Android - https://play.google.com/store/apps/details?id=cipeViolencia.ltia&hl=en_US
+
 iOS: https://apps.apple.com/us/app/cipe-violencia/id1482577896 
 
 ## Criação e Apoio - Creation and Support
